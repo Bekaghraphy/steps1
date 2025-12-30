@@ -176,10 +176,10 @@ $(window).on('load', function() {
     });
   };
 
-  $('#number1').jQuerySimpleCounter({end: 256,duration: 2000});
-  $('#number2').jQuerySimpleCounter({end: 860,duration: 2000});
-  $('#number3').jQuerySimpleCounter({end: 200,duration: 2000});
-  $('#number4').jQuerySimpleCounter({end: 80,duration: 2000});
+  $('#number1').jQuerySimpleCounter({end: +100,duration: 2000});
+  $('#number2').jQuerySimpleCounter({end: +12,duration: 2000});
+  $('#number3').jQuerySimpleCounter({end: +100,duration: 2000});
+  $('#number4').jQuerySimpleCounter({end: +50,duration: 2000});
 
   /*-------------------------------------Specific Function-------------------------------------*/
   function reveal() {
@@ -242,4 +242,5 @@ function onScroll(event){
         }
     });
 }
+
   
