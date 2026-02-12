@@ -19,6 +19,29 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/media-query.css">
 
+
+<style>
+  /* Section divider line */
+  .section-divider{height:1px;background:rgba(255,255,255,.12);border:0;max-width:1200px;margin:0 auto;}
+  body .section-divider{margin-top:10px;margin-bottom:10px;}
+
+  /* Timeline */
+  .timeline_wrap{display:flex;gap:18px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;}
+  .timeline_item{flex:1 1 240px;min-width:240px;display:flex;flex-direction:column;background:#f6f6f6;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);}
+  .timeline_year{background:#FD8558;color:#111;font-weight:800;font-size:28px;letter-spacing:1px;padding:18px 20px;}
+  .timeline_card{padding:18px 20px;}
+  .timeline_card h3{margin:0 0 10px 0;font-size:18px;font-weight:800;color:#111;}
+  .timeline_card p{margin:0;color:#444;line-height:1.6;font-size:14px;}
+
+  /* Projects */
+  .project_card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25);backdrop-filter: blur(6px);}
+  .project_badge{display:inline-block;background:#FD8558;color:#111;font-weight:800;font-size:12px;letter-spacing:.8px;padding:6px 10px;border-radius:999px;margin-bottom:12px;text-transform:uppercase;}
+  .project_title{margin:0 0 12px 0;color:#fff;font-weight:800;font-size:20px;}
+  .project_meta{margin:0 0 6px 0;color:rgba(255,255,255,.78);font-size:14px;}
+  .project_meta span{color:#FD8558;font-weight:700;}
+  .project_desc{margin:14px 0 0 0;color:rgba(255,255,255,.75);line-height:1.7;font-size:14px;}
+</style>
+
 </head>
 <body>
 
@@ -57,10 +80,13 @@
 										<a class="nav-link " href="#services_sec">SERVICES</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link " href="#skills_sec">SKILL</a>
+										<a class="nav-link " href="#timeline_sec">TIMELINE</a>
 									</li>
 <li class="nav-item">
-										<a class="nav-link " href="#contact_sec">TEAM</a>	
+										<a class="nav-link " href="#team_sec">TEAM</a>	
+									</li>
+									<li class="nav-item">
+										<a class="nav-link " href="#projects_sec">PROJECTS</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link " href="#contact_sec">CONTACT</a>
@@ -210,12 +236,11 @@
 		</section> 
 		<!--About Section End -->
 
+<div class="section-divider"></div>
+
 		<!-- Services Section Start -->
 		<section id="services_sec">
 			<div class="container">
-				<div class="service_top_sec">
-					<p class="orange_box d-flex align-items-center justify-content-center">SERVICES</p>
-				</div>
 				<div class="row" >
 					<div class="col-lg-4 col-md-6 col-sm-6 col-12">
 						<div class="services_top_section">
@@ -377,52 +402,78 @@
 		</div>
 		<!-- Services Modal  End -->
 
-		<!-- Skills Section Start -->
-		<section id="skills_sec" class="reveal active">
-			<div class="container">
-				<div class="skills_top_sec">
-					<p class="orange_box d-flex align-items-center justify-content-center">SKILLS</p>
-				</div>
-				<div class="row" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
-					<div class="col-md-6 col-12" data-aos="fade-down-right">
-						<div class="skill_img_section text-center">
-							<img src="assets/images/skill/skill-1.png" class="tilt-img img-fluid text-center" alt="skill_img">
-						</div>
-					</div>
-					<div class="col-md-6 col-12" data-aos="fade-down-left" >
-						<div class="skill_deatils_sec">
-							<p  class="our_skill_txt">OUR SKILL</p>
-							<h2 class="modern_txt" data-aos="fade-down" data-aos-duration="1000">Engineering Excellence In Every STEPS</h2>
-							<p class="our_skill_desc" data-aos="fade-up" data-aos-duration="1000">Delivering integrated electromechanical solutions through expertise, precision, and disciplined project execution.</p>
-							<div class="skill-bars" data-aos="fade-up" data-aos-duration="1000">
-								<div class="progresbar-counter position-relative">
-									<h3 class="progress-title">ELECTROMECHANICAL SYSTEMS</h3>
-									<div class="progress-value"><span class="count c-counter"
-										data-number="80">80</span>%
-									</div>
-									<div class="skil-progressbar"><span style="width:80%;"></span></div>
-								</div>
-								<div class="progresbar-counter position-relative">
-									<h3 class="progress-title">PROJECT MANAGEMENT</h3>
-									<div class="progress-value"><span class="count c-counter"
-										data-number="90">90</span>%
-									</div>
-									<div class="skil-progressbar"><span style="width:90%;"></span></div>
-								</div>
-								<div class="progresbar-counter position-relative">
-									<h3 class="progress-title">TECHNICAL ENGINEERING</h3>
-									<div class="progress-value"><span class="count c-counter"
-										data-number="75">80</span>%
-									</div>
-									<div class="skil-progressbar"><span style="width:75%;"></span></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>  
-		<!-- Skills Section End -->
+		
+<!-- Timeline Section Start -->
+<section id="timeline_sec" class="reveal">
+  <div class="container">
+    <div class="skills_top_sec">
+      <p class="orange_box d-flex align-items-center justify-content-center">TIMELINE</p>
+    </div>
+
+    <div class="timeline_wrap" data-aos="fade-up" data-aos-duration="1000">
+      <div class="timeline_item" data-aos="fade-right" data-aos-duration="1000">
+        <div class="timeline_year">2012</div>
+        <div class="timeline_card">
+          <h3>The Beginning</h3>
+          <p>The company began its operations in electromechanical contracting, backed by a skilled team whose experience was built through successfully delivering major projects and earning strong client satisfaction.</p>
+        </div>
+      </div>
+
+      <div class="timeline_item" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+        <div class="timeline_year">2017</div>
+        <div class="timeline_card">
+          <h3>Expansion of Expertise</h3>
+          <p>The company expanded by securing major projects that strengthened its market presence and showcased the team’s expertise and ability to deliver high-quality work based on solid, proven experience.</p>
+        </div>
+      </div>
+
+      <div class="timeline_item" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+        <div class="timeline_year">2022</div>
+        <div class="timeline_card">
+          <h3>Strategic Alignment</h3>
+          <p>All previous achievements and completed projects under our different entities were consolidated into a unified identity—STEPS—now established as a leading engineering firm, especially in electromechanical construction projects.</p>
+        </div>
+      </div>
+
+      <div class="timeline_item" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+        <div class="timeline_year">2025</div>
+        <div class="timeline_card">
+          <h3>Official Launch in Saudi Arabia</h3>
+          <p>In 2025, following our strong success in the local market, we expanded regionally by establishing our Saudi branch, Engineering STEPS, based in Riyadh—marking a new step in our evolution into a multinational company.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Timeline Section End -->
+
+<div class="section-divider"></div>
+
+<!-- Projects Section Start -->
+<section id="projects_sec" class="reveal">
+  <div class="container">
+    <div class="team_top_sec_content">
+      <p class="orange_box d-flex align-items-center justify-content-center">PROJECTS</p>
+    </div>
+
+    <div class="row" style="margin-top:30px;">
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="project_card" data-aos="fade-up" data-aos-duration="1000">
+          <div class="project_badge">Sample Project</div>
+          <h3 class="project_title">Bahr El Baqar Treatment Station</h3>
+          <p class="project_meta"><span>Client:</span> Arab Contractors</p>
+          <p class="project_meta"><span>Scope:</span> HVAC</p>
+          <p class="project_desc">A major treatment-station project delivered with disciplined engineering execution and system integration.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Projects Section End -->
+
+<div class="section-divider"></div>
+
+
 
 		<!-- Video Section Start -->
 		<section id="video_sec">
@@ -531,10 +582,6 @@
 <!-- Services (From Company Profile) Section Start -->
 <section id="services_profile">
   <div class="container">
-    <div class="service_top_sec">
-      <p class="orange_box d-flex align-items-center justify-content-center">SERVICES</p>
-    </div>
-
     <div class="row" data-aos="fade-up" data-aos-duration="1000">
       <div class="col-12">
         <h2 class="ult_txt" data-aos="fade-right" data-aos-duration="1000">What We Deliver</h2>
@@ -690,6 +737,8 @@
   </div>
 </section>
 <!-- Services (From Company Profile) Section End -->
+
+<div class="section-divider"></div>
 
 
 		<!--Team Section Start  -->
