@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Steps</title>
+	<title>Engineering Steps</title>
 
 	<link rel="icon" href="assets/images/favicon/favicon-icon.png">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -34,12 +34,93 @@
   .timeline_card p{margin:0;color:#444;line-height:1.6;font-size:14px;}
 
   /* Projects */
-  .project_card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25);backdrop-filter: blur(6px);}
-  .project_badge{display:inline-block;background:#f5c14a;color:#111;font-weight:800;font-size:12px;letter-spacing:.8px;padding:6px 10px;border-radius:999px;margin-bottom:12px;text-transform:uppercase;}
-  .project_title{margin:0 0 12px 0;color:#000;font-weight:800;font-size:20px;}
-  .project_meta{margin:0 0 6px 0;color:rgba(255,255,255,.78);font-size:14px;}
-  .project_meta span{color:#f5c14a;font-weight:700;}
-  .project_desc{margin:14px 0 0 0;color:rgba(255,255,255,.75);line-height:1.7;font-size:14px;}
+  #projects_sec{position:relative;overflow:hidden;}
+  .projects_intro{max-width:720px;margin-bottom:10px;color:#8d8d8d;}
+  .project_card{
+    position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 18px 45px rgba(0,0,0,.18);
+    backdrop-filter: blur(8px);
+    overflow:hidden;
+    isolation:isolate;
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    height:100%;
+    cursor:pointer;
+  }
+  .project_card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:24px;
+    background:
+      radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(245,193,74,.28), transparent 38%),
+      linear-gradient(135deg, rgba(245,193,74,.22), transparent 35%, transparent 65%, rgba(245,193,74,.15));
+    opacity:.0;
+    transition:opacity .35s ease;
+    z-index:-1;
+  }
+  .project_card:hover,
+  .project_card.is-active{
+    transform:translateY(-8px) scale(1.01);
+    border-color:rgba(245,193,74,.45);
+    box-shadow:0 20px 55px rgba(0,0,0,.22), 0 0 0 1px rgba(245,193,74,.18);
+  }
+  .project_card:hover::before,
+  .project_card.is-active::before{opacity:1;}
+  .project_badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    background:#f5c14a;color:#111;font-weight:800;font-size:12px;letter-spacing:.08em;
+    padding:7px 12px;border-radius:999px;margin-bottom:14px;text-transform:uppercase;
+  }
+  .project_img{
+    width:100%;height:220px;border-radius:16px;margin-bottom:16px;
+    background:linear-gradient(135deg, rgba(245,193,74,.14), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.14);
+    overflow:hidden;position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .project_img::after{
+    content:"Replace Photo";
+    position:absolute;left:16px;bottom:14px;
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:rgba(17,17,17,.65);padding:7px 10px;border-radius:999px;
+    backdrop-filter: blur(4px);
+  }
+  .project_img img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .55s ease, filter .35s ease;
+  }
+  .project_card:hover .project_img img,
+  .project_card.is-active .project_img img{transform:scale(1.06);}
+  .project_placeholder{
+    color:rgba(255,255,255,.88);font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+  }
+  .project_title{
+    margin:0 0 10px 0;color:#111;font-weight:900;font-size:22px;line-height:1.2;
+    transition:color .3s ease, transform .3s ease;
+  }
+  .project_card:hover .project_title,
+  .project_card.is-active .project_title{color:#f5c14a;transform:translateX(4px);}
+  .project_meta{
+    margin:0 0 7px 0;color:#444;font-size:14px;line-height:1.6;
+  }
+  .project_meta span{color:#f5c14a;font-weight:900;}
+  .project_link{
+    margin-top:14px;display:inline-flex;align-items:center;gap:10px;color:#111;text-decoration:none;
+    font-weight:800;letter-spacing:.03em;
+  }
+  .project_link .dot{
+    width:10px;height:10px;border-radius:50%;background:#f5c14a;
+    box-shadow:0 0 0 8px rgba(245,193,74,.16);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .project_card:hover .project_link .dot,
+  .project_card.is-active .project_link .dot{
+    transform:scale(1.15); box-shadow:0 0 0 12px rgba(245,193,74,.12);
+  }
 
   /* Animated yellow line before sections */
   .section-anim-line{width:90px;height:4px;background:#f5c14a;border-radius:999px;margin:0 0 18px 0;}
@@ -107,7 +188,7 @@
 				<div class="row">
 					<div class="col-2">
 						<div class="logo_section">
-							<a href="#hero_section_slider"><img src="assets/images/header/header-logo.png" class="site_logo" alt="STEPS logo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend',' <span class=\"logo-fallback\">STEPS</span>');"></a>
+							<a href="#hero_section_slider"><img src="assets/images/header/header-logo.png" class="site_logo" alt="STEPS logo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend',' <span class=\"logo-fallback\">ENGINEERING STEPS</span>');"></a>
 						</div>
 					</div>
 					<div class="col-10 d-flex justify-content-end">
@@ -442,6 +523,7 @@
 <div class="section-divider"></div>
 
 
+
 <!-- Projects Section Start -->
 <section id="projects_sec" class="reveal">
   <div class="container">
@@ -451,121 +533,211 @@
     </div>
 
     <div class="row">
-      <div class="col-12" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
-        <p class="common_para">
-         
-        </p>
+      <div class="col-lg-8 col-12" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+        <h2 class="ult_txt">Selected Projects</h2>
+        <p class="projects_intro">A dynamic portfolio of completed electromechanical, HVAC, MEP, plumbing, firefighting, and industrial installation projects. Each card supports a replaceable project photo later inside the same image path structure.</p>
       </div>
     </div>
 
     <div class="row">
       
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Body Line Cooling Bahr El Baqar Upgrade Project Treatment station</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> General motors Arab Contractors</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> Mechanical Installation HVAC</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project1.jpg" alt="Bahr El Baqar Treatment Station" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 01 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 01</div>
+          <h3 class="project_title">Bahr El Baqar Treatment Station</h3>
+          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
+          <p class="project_meta"><span>•</span> Scope: HVAC</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-      
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Factory work environment Konouz El Galala quality improvement, Showroom (1,2)</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> Eastern Company Military Works Department</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> HVAC VRV</p>
-    <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
-  <img src="assets/images/projects/project1.jpg" alt="Factory work environment Konouz El Galala" class="img-fluid">
-</div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project2.jpg" alt="Body Line Cooling Upgrade Project – General Motors" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 02 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 02</div>
+          <h3 class="project_title">Body Line Cooling Upgrade Project – General Motors</h3>
+          <p class="project_meta"><span>•</span> Client: General Motors</p>
+          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Mastercard VIP Zafaran Palace,Ain lounge,Cairo Airport Shams University</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> Mastercard Arab Contractors</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> MEP VRV</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project3.jpg" alt="Konouz El Galala Showroom (1,2)" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 03 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 03</div>
+          <h3 class="project_title">Konouz El Galala Showroom (1,2)</h3>
+          <p class="project_meta"><span>•</span> Client: Military Works Department</p>
+          <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Senators Building,New Residential District Administration Capital Firefighting Installation –</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> New Administrative Capital</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> Arab Contractors ORASCOM Construction</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900"><span>•</span> HVAC Firefighting Works</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project4.jpg" alt="Factory Work Environment Quality Improvement – Eastern Company" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 04 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 04</div>
+          <h3 class="project_title">Factory Work Environment Quality Improvement – Eastern Company</h3>
+          <p class="project_meta"><span>•</span> Client: Eastern Company</p>
+          <p class="project_meta"><span>•</span> Scope: HVAC</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Boiler System Adly Mansour Mall, Upgrade Project Plumbing System installation</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> Dakahlia slaughterhouse Innovate Company</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> Mechanical Installation Plumbing system</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project5.jpg" alt="Mastercard VIP Lounge – Cairo Airport" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 05 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 05</div>
+          <h3 class="project_title">Mastercard VIP Lounge – Cairo Airport</h3>
+          <p class="project_meta"><span>•</span> Client: Mastercard</p>
+          <p class="project_meta"><span>•</span> Scope: MEP</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Fire Safety System Four Seasons Villas MEP Installation Project Systems Installation</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> Verdi Foods,Investment Zone SQUARE Construction firm</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> MEP MEP</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project6.jpg" alt="Zafaran Palace – Ain Shams University" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 06 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 06</div>
+          <h3 class="project_title">Zafaran Palace – Ain Shams University</h3>
+          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
+          <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Information Technology ORION FOOD Innovation Center – VRV INDUSTRIES</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> System Installation</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> Mechanical installation</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900"><span>•</span> Arab Contractors</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="250" data-aos-duration="900"><span>•</span> HVAC</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project7.jpg" alt="Residential District Firefighting Installation – New Administrative Capital" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 07 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 07</div>
+          <h3 class="project_title">Residential District Firefighting Installation – New Administrative Capital</h3>
+          <p class="project_meta"><span>•</span> Client: ORASCOM Construction</p>
+          <p class="project_meta"><span>•</span> Scope: Firefighting Systems</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
-
-      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="project_card">
-          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">Project photo (replace later)</div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">BAHTEEM Hospital NATIONAL EGYPTIAN Renovation RAILWAY INDUSTRIES CO</h3>
-          <p class="project_meta" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900"><span>•</span> ROLLING STOCK PLANET</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900"><span>•</span> Fire protection</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900"><span>•</span> upgrade Compressed air system</p>
-<p class="project_meta" data-aos="fade-up" data-aos-delay="250" data-aos-duration="900"><span>•</span> network</p>
-
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project8.jpg" alt="Senators Building – New Administrative Capital" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 08 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 08</div>
+          <h3 class="project_title">Senators Building – New Administrative Capital</h3>
+          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
+          <p class="project_meta"><span>•</span> Scope: HVAC</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
         </div>
       </div>
-    
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project9.jpg" alt="Adly Mansour Mall – Plumbing System Installation" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 09 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 09</div>
+          <h3 class="project_title">Adly Mansour Mall – Plumbing System Installation</h3>
+          <p class="project_meta"><span>•</span> Client: Innovate Company</p>
+          <p class="project_meta"><span>•</span> Scope: Plumbing Systems</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project10.jpg" alt="Boiler System Upgrade Project – Dakahlia Slaughterhouse" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 10 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 10</div>
+          <h3 class="project_title">Boiler System Upgrade Project – Dakahlia Slaughterhouse</h3>
+          <p class="project_meta"><span>•</span> Client: Dakahlia Slaughterhouse</p>
+          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project11.jpg" alt="Four Seasons Villas – MEP Systems Installation" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 11 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 11</div>
+          <h3 class="project_title">Four Seasons Villas – MEP Systems Installation</h3>
+          <p class="project_meta"><span>•</span> Client: SQUARE Construction Firm</p>
+          <p class="project_meta"><span>•</span> Scope: MEP</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project12.jpg" alt="Fire Safety System Installation Project – Verdi Foods (Investment Zone)" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 12 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 12</div>
+          <h3 class="project_title">Fire Safety System Installation Project – Verdi Foods (Investment Zone)</h3>
+          <p class="project_meta"><span>•</span> Client: Verdi Foods</p>
+          <p class="project_meta"><span>•</span> Scope: MEP</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project13.jpg" alt="Information Technology Innovation Center – VRV System Installation" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 13 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 13</div>
+          <h3 class="project_title">Information Technology Innovation Center – VRV System Installation</h3>
+          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
+          <p class="project_meta"><span>•</span> Scope: HVAC</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project14.jpg" alt="ORION Food Industries" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 14 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 14</div>
+          <h3 class="project_title">ORION Food Industries</h3>
+          <p class="project_meta"><span>•</span> Client: ORION Food Industries</p>
+          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project15.jpg" alt="Bahteem Hospital Renovation" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 15 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 15</div>
+          <h3 class="project_title">Bahteem Hospital Renovation</h3>
+          
+          <p class="project_meta"><span>•</span> Scope: Fire Protection Upgrade</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div class="project_card js-project-card" tabindex="0">
+          <div class="project_img" data-aos="zoom-in" data-aos-duration="900">
+            <img src="assets/images/projects/project16.jpg" alt="National Egyptian Railway Industries Co. – Rolling Stock Plant" onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=&quot;project_placeholder&quot;>Project 16 Photo</span>';">
+          </div>
+          <div class="project_badge">Project 16</div>
+          <h3 class="project_title">National Egyptian Railway Industries Co. – Rolling Stock Plant</h3>
+          
+          <p class="project_meta"><span>•</span> Scope: Compressed Air System Network</p>
+          <a href="javascript:void(0)" class="project_link"><span class="dot"></span> View Project</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 <!-- Projects Section End -->
+
 
 
 <div class="section-divider"></div>
@@ -946,7 +1118,7 @@
 										<h4>let's talk</h4>
 									</div>
 									<div class="detail_contact_number">
-										<h5>Phone:&nbsp;<span class="mob_no"><a href="tel:+1921-124-9220">+966533703794</a></span></h5>
+										<h5>Phone:&nbsp;<span class="mob_no"><a href="tel:+201050003626">+201050003626</a></span></h5>
 
 										<h5>Email:&nbsp;<span class="con_email"><a href="mailto:hi@azota.com">steps@eng-steps.com</a></span></h5>
 
@@ -1022,7 +1194,7 @@
 							<div class="footer_heading text-center">
 								<h4 data-aos="fade-down"
 								data-aos-easing="linear"
-								data-aos-duration="1000"><a href="mailto:هinfo@engsteps.com" >Info@engsteps.com</a></h4>
+								data-aos-duration="1000"><a href="mailto:steps@eng-steps.com" >steps@eng-steps.com</a></h4>
 								<div class="footer_line position-relative">
 									<hr class="footer_divider">
 								</div>
@@ -1101,7 +1273,7 @@
 
 							</div>
 							<div class="footer_copyright">
-								<p>Copyright ©2026 - Steps </p>
+								<p>Copyright 2026 - Eng-steps </p>
 							</div>
 						</div>
 					</div>
@@ -1142,22 +1314,32 @@
   })();
 </script>
 
+
+<script>
+  // Dynamic glow + click active for project cards
+  (function(){
+    const cards = document.querySelectorAll('.js-project-card');
+    cards.forEach(card=>{
+      const setPos = (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      };
+      card.addEventListener('mousemove', setPos);
+      card.addEventListener('mouseenter', ()=>card.classList.add('is-active'));
+      card.addEventListener('mouseleave', ()=>card.classList.remove('is-active'));
+      card.addEventListener('click', ()=>{
+        document.querySelectorAll('.js-project-card.is-active').forEach(el=>el.classList.remove('is-active'));
+        card.classList.add('is-active');
+      });
+      card.addEventListener('focus', ()=>card.classList.add('is-active'));
+      card.addEventListener('blur', ()=>card.classList.remove('is-active'));
+    });
+  })();
+</script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
