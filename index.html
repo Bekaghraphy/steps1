@@ -3,48 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Engineering Steps</title>
 
   <link rel="icon" href="assets/images/favicon/favicon-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/aos.css" />
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
   <style>
     :root{
-      --bg:#0f0f10;
-      --bg-soft:#171719;
-      --card:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.12);
+      --bg:#0c0d10;
+      --bg-soft:#13151a;
+      --panel:rgba(255,255,255,.05);
+      --panel-solid:#171a20;
       --text:#ffffff;
       --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.10);
       --yellow:#f5c14a;
-      --yellow-soft:rgba(245,193,74,.18);
-      --white:#fff;
-      --shadow:0 14px 35px rgba(0,0,0,.28);
-      --radius:18px;
-      --hero-overlay:rgba(0,0,0,.60);
-      --video-overlay:rgba(0,0,0,.64);
+      --yellow-soft:rgba(245,193,74,.14);
+      --shadow:0 14px 40px rgba(0,0,0,.28);
+      --radius:20px;
+      --hero-overlay:rgba(0,0,0,.58);
+      --video-overlay:rgba(0,0,0,.62);
       --input-bg:rgba(255,255,255,.04);
       --input-border:rgba(255,255,255,.10);
+      --header-bg:rgba(10,10,12,.72);
     }
 
     html[data-theme="light"]{
-      --bg:#f7f7f8;
+      --bg:#f5f6f8;
       --bg-soft:#ffffff;
-      --card:rgba(255,255,255,.96);
+      --panel:rgba(255,255,255,.92);
+      --panel-solid:#ffffff;
+      --text:#121212;
+      --muted:rgba(18,18,18,.68);
       --line:rgba(0,0,0,.10);
-      --text:#111111;
-      --muted:rgba(17,17,17,.68);
-      --white:#111111;
-      --shadow:0 12px 28px rgba(0,0,0,.08);
-      --hero-overlay:rgba(255,255,255,.55);
-      --video-overlay:rgba(255,255,255,.62);
+      --shadow:0 10px 28px rgba(0,0,0,.10);
+      --hero-overlay:rgba(255,255,255,.48);
+      --video-overlay:rgba(255,255,255,.55);
       --input-bg:#ffffff;
       --input-border:rgba(0,0,0,.10);
+      --header-bg:rgba(255,255,255,.78);
     }
 
     *{box-sizing:border-box}
@@ -55,13 +55,93 @@
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
-      transition:background .3s ease,color .3s ease;
+      transition:background .25s ease,color .25s ease;
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    section{position:relative}
-    .container{position:relative;z-index:2}
+    img{display:block;max-width:100%}
+    button{font-family:inherit}
+    .container{
+      width:min(1200px, calc(100% - 32px));
+      margin-inline:auto;
+    }
+
+    .section-block{padding:90px 0}
+    .section-gap{
+      height:64px;
+      position:relative;
+    }
+    .section-gap::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:min(1200px, calc(100% - 32px));
+      height:1px;
+      background:var(--line);
+    }
+
+    .section-anim-line{
+      width:90px;
+      height:4px;
+      background:var(--yellow);
+      border-radius:999px;
+      margin:0 0 16px;
+      box-shadow:0 0 18px rgba(245,193,74,.18);
+    }
+
+    .orange_box{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--yellow);
+      color:#111;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin:0 0 18px;
+    }
+
+    .section_title{
+      margin:0 0 14px;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.12;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    .section_text{
+      margin:0;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:15px;
+    }
+
+    h1,h2,h3,h4,.section_title{
+      transition:transform .22s ease,color .22s ease,text-shadow .22s ease;
+      cursor:pointer;
+    }
+    h1:hover,h2:hover,h3:hover,h4:hover,.section_title:hover{
+      color:var(--yellow);
+      transform:translateY(-2px);
+      text-shadow:0 0 18px rgba(245,193,74,.16);
+    }
+    .heading-selected{
+      color:var(--yellow)!important;
+      text-shadow:0 0 20px rgba(245,193,74,.24)!important;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(8px);
+    }
 
     /* Header */
     #header_sec{
@@ -69,61 +149,71 @@
       top:0;
       left:0;
       width:100%;
-      z-index:999;
-      background:color-mix(in srgb, var(--bg) 78%, transparent);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      z-index:1000;
+      background:var(--header-bg);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
     }
-    #header_sec .row{
-      align-items:center;
+
+    .header_inner{
       min-height:78px;
-    }
-    .logo_section{
       display:flex;
       align-items:center;
-      min-height:78px;
+      justify-content:space-between;
+      gap:18px;
     }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
     .site_logo{
       max-height:42px;
       width:auto;
     }
+
     .logo-fallback{
       font-weight:800;
       letter-spacing:.08em;
       font-size:18px;
-      color:var(--text);
       text-transform:uppercase;
+      color:var(--text);
+      white-space:nowrap;
     }
 
-    .navbar-wrap{
+    .header_right{
       display:flex;
       align-items:center;
-      justify-content:flex-end;
+      gap:14px;
+    }
+
+    .desktop_nav{
+      display:flex;
+      align-items:center;
       gap:18px;
       flex-wrap:wrap;
     }
 
-    .navbar-nav{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      margin-left:auto;
-      flex-direction:row;
-    }
-    .nav-link{
-      color:var(--text) !important;
+    .desktop_nav a,
+    .mobile_nav a{
+      position:relative;
+      color:var(--text);
       font-size:14px;
       font-weight:600;
       letter-spacing:.04em;
       transition:.25s ease;
-      position:relative;
-      padding:0 !important;
     }
-    .nav-link:hover,
-    .nav-link.active{
-      color:var(--yellow) !important;
+
+    .desktop_nav a:hover,
+    .mobile_nav a:hover{
+      color:var(--yellow);
     }
-    .nav-link::after{
+
+    .desktop_nav a::after,
+    .mobile_nav a::after{
       content:"";
       position:absolute;
       left:0;
@@ -133,211 +223,204 @@
       background:var(--yellow);
       transition:.25s ease;
     }
-    .nav-link:hover::after{width:100%}
 
-    .theme-toggle{
-      border:none;
-      background:var(--card);
-      color:var(--text);
-      border:1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    .desktop_nav a:hover::after,
+    .mobile_nav a:hover::after{
+      width:100%;
+    }
+
+    .theme-toggle,
+    .menu-toggle{
       width:44px;
       height:44px;
+      border:none;
       border-radius:50%;
       display:flex;
       align-items:center;
       justify-content:center;
+      background:var(--panel);
+      border:1px solid var(--line);
+      color:var(--text);
       cursor:pointer;
-      transition:.25s ease;
+      transition:.22s ease;
       box-shadow:var(--shadow);
+      flex-shrink:0;
     }
-    .theme-toggle:hover{
-      transform:translateY(-2px);
-      border-color:rgba(245,193,74,.35);
+
+    .theme-toggle:hover,
+    .menu-toggle:hover{
       color:var(--yellow);
+      transform:translateY(-2px);
+      border-color:rgba(245,193,74,.32);
+    }
+
+    .menu-toggle{display:none}
+
+    .mobile_menu{
+      position:fixed;
+      top:79px;
+      left:0;
+      width:100%;
+      z-index:999;
+      background:var(--header-bg);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+      padding:0 16px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease,padding .28s ease;
+    }
+
+    .mobile_menu.open{
+      max-height:420px;
+      padding:14px 16px 18px;
+    }
+
+    .mobile_nav{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
     /* Hero */
     #hero_section_slider{
       min-height:100vh;
-      display:flex;
-      align-items:center;
       padding:140px 0 80px;
       background:
         linear-gradient(var(--hero-overlay), var(--hero-overlay)),
         url("assets/images/hero/hero-1.jpg") center/cover no-repeat;
+      display:flex;
+      align-items:center;
     }
-    .hero_content{
-      max-width:760px;
-      margin-bottom:26px;
+
+    .hero_layout{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
     }
+
     .hero_content h1{
-      font-size:58px;
-      line-height:1.08;
+      margin:0 0 18px;
+      font-size:clamp(34px,6vw,60px);
+      line-height:1.04;
       font-weight:800;
-      margin:0 0 22px;
-      color:var(--white);
+      color:#fff;
     }
+
     .hero_content .bold_txt{color:var(--yellow)}
     .hero_content p{
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.8;
-      max-width:680px;
       margin:0 0 28px;
+      max-width:640px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.9;
     }
+
     .hero_btn{
       display:inline-flex;
       align-items:center;
-      gap:12px;
-      padding:14px 20px;
+      gap:10px;
+      padding:14px 22px;
       border-radius:999px;
       background:var(--yellow);
       color:#111;
-      font-weight:700;
-      transition:.3s ease;
+      font-weight:800;
+      transition:.24s ease;
     }
+
     .hero_btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(245,193,74,.24);
+      box-shadow:0 12px 24px rgba(245,193,74,.24);
     }
 
-    .hero-scroll-gallery{
+    .hero_gallery{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:26px;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
     }
-    .hero-gallery-card{
-      background:var(--card);
-      border:1px solid color-mix(in srgb, var(--text) 8%, transparent);
-      border-radius:18px;
+
+    .hero_gallery_card{
       padding:10px;
       overflow:hidden;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(6px);
     }
-    .hero-gallery-card img{
+
+    .hero_gallery_card.large{
+      grid-column:span 2;
+    }
+
+    .hero_gallery_card img{
       width:100%;
-      height:240px;
+      height:220px;
       object-fit:cover;
-      border-radius:14px;
-      transition:transform .45s ease, filter .45s ease;
+      border-radius:16px;
+      transition:transform .4s ease, filter .4s ease;
     }
-    .hero-gallery-card:hover img{
+
+    .hero_gallery_card.large img{
+      height:260px;
+    }
+
+    .hero_gallery_card:hover img{
       transform:scale(1.05);
-      filter:brightness(1.04);
-    }
-
-    /* Common */
-    .section-block{padding:95px 0}
-    .section-gap{
-      height:70px;
-      position:relative;
-    }
-    .section-gap::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      width:min(1180px, calc(100% - 32px));
-      height:1px;
-      background:var(--line);
-    }
-
-    .section-anim-line{
-      width:88px;
-      height:4px;
-      background:var(--yellow);
-      border-radius:999px;
-      margin:0 0 16px;
-      box-shadow:0 0 18px rgba(245,193,74,.18);
-    }
-    .orange_box{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 18px;
-      border-radius:999px;
-      background:var(--yellow);
-      color:#111;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:20px;
-      font-size:13px;
-    }
-    .section_title{
-      font-size:42px;
-      line-height:1.15;
-      font-weight:800;
-      margin:0 0 14px;
-      color:var(--white);
-    }
-    .section_text{
-      color:var(--muted);
-      line-height:1.9;
-      font-size:15px;
-      margin:0;
-    }
-
-    h1,h2,h3,h4,.section_title{
-      transition:transform .25s ease, color .25s ease, text-shadow .25s ease;
-      cursor:pointer;
-    }
-    h1:hover,h2:hover,h3:hover,h4:hover,.section_title:hover{
-      color:var(--yellow);
-      transform:translateY(-2px);
-      text-shadow:0 0 20px rgba(245,193,74,.18);
-    }
-    .heading-selected{
-      color:var(--yellow) !important;
-      text-shadow:0 0 20px rgba(245,193,74,.26);
-    }
-
-    /* Cards */
-    .about_image_card,
-    .info_card,
-    .service_card,
-    .project_card,
-    .hr_card,
-    .contact_form_wrap,
-    .contact_info_box,
-    .counter_item{
-      background:var(--card);
-      border:1px solid color-mix(in srgb, var(--text) 8%, transparent);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(6px);
+      filter:brightness(1.05);
     }
 
     /* About */
-    .about_image_card{
-      overflow:hidden;
-      padding:14px;
+    .about_grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+      align-items:stretch;
+      margin-bottom:22px;
     }
-    .about_image_card img{
-      border-radius:14px;
+
+    .about_image{
+      padding:14px;
+      overflow:hidden;
+    }
+
+    .about_image img{
       width:100%;
       height:100%;
-      object-fit:cover;
       min-height:420px;
+      object-fit:cover;
+      border-radius:16px;
     }
-    .info_card{
-      padding:26px;
-      height:100%;
+
+    .about_text_card{
+      padding:28px;
     }
-    .info_card h3{
-      margin:0 0 12px;
+
+    .about_text_card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:15px;
+    }
+
+    .about_features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .feature_card{
+      padding:24px;
+    }
+
+    .feature_card h3{
+      margin:0 0 10px;
       color:var(--yellow);
       font-size:22px;
       font-weight:800;
     }
-    .info_card p{
+
+    .feature_card p{
       margin:0;
       color:var(--muted);
       line-height:1.85;
-      font-size:15px;
+      font-size:14px;
     }
 
     /* Timeline */
@@ -346,103 +429,41 @@
       grid-template-columns:repeat(4,1fr);
       gap:18px;
     }
+
     .timeline_item{
       background:#f7f7f7;
-      border-radius:16px;
+      border-radius:18px;
       overflow:hidden;
-      box-shadow:0 10px 28px rgba(0,0,0,.12);
-      height:100%;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
     }
+
     html[data-theme="light"] .timeline_item{
-      background:#ffffff;
       border:1px solid rgba(0,0,0,.08);
+      background:#fff;
     }
+
     .timeline_year{
       background:var(--yellow);
       color:#111;
+      padding:16px 18px;
       font-size:28px;
       font-weight:800;
-      padding:16px 18px;
     }
+
     .timeline_card{
       padding:18px;
     }
+
     .timeline_card h3{
       margin:0 0 10px;
       color:#111;
       font-size:19px;
       font-weight:800;
     }
+
     .timeline_card p{
       margin:0;
       color:#444;
-      line-height:1.8;
-      font-size:14px;
-    }
-
-    /* Counter */
-    .counter_wrap{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-    }
-    .counter_item{
-      padding:26px 20px;
-      text-align:center;
-    }
-    .counter_item h3{
-      margin:0 0 10px;
-      font-size:40px;
-      color:var(--yellow);
-      font-weight:800;
-    }
-    .counter_item p{
-      margin:0;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      font-size:13px;
-      font-weight:600;
-    }
-
-    /* Services */
-    .services_grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-    .service_card{
-      padding:24px;
-      transition:.28s ease;
-      height:100%;
-    }
-    .service_card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(245,193,74,.28);
-      box-shadow:0 18px 34px rgba(0,0,0,.20), 0 0 22px rgba(245,193,74,.08);
-    }
-    .service_icon{
-      width:58px;
-      height:58px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--yellow-soft);
-      color:var(--yellow);
-      border:1px solid rgba(245,193,74,.24);
-      margin-bottom:16px;
-      font-size:20px;
-    }
-    .service_card h4{
-      margin:0 0 10px;
-      font-size:20px;
-      font-weight:800;
-      color:var(--white);
-    }
-    .service_card p{
-      margin:0;
-      color:var(--muted);
       line-height:1.8;
       font-size:14px;
     }
@@ -453,79 +474,90 @@
       grid-template-columns:repeat(3,1fr);
       gap:22px;
     }
+
     .project_card{
-      overflow:hidden;
       padding:16px;
       position:relative;
-      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      overflow:hidden;
       cursor:pointer;
+      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
     }
+
     .project_card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(245,193,74,.14), transparent 45%, rgba(245,193,74,.06));
+      background:linear-gradient(135deg, rgba(245,193,74,.13), transparent 45%, rgba(245,193,74,.05));
       opacity:0;
-      transition:.3s ease;
+      transition:.28s ease;
       pointer-events:none;
     }
+
     .project_card:hover{
       transform:translateY(-8px) scale(1.01);
-      border-color:rgba(245,193,74,.28);
-      box-shadow:0 20px 40px rgba(0,0,0,.22), 0 0 24px rgba(245,193,74,.08);
+      border-color:rgba(245,193,74,.32);
+      box-shadow:0 20px 42px rgba(0,0,0,.28),0 0 22px rgba(245,193,74,.08);
     }
+
     .project_card:hover::before{opacity:1}
+
     .project_card.active-project{
       border-color:rgba(245,193,74,.48);
-      box-shadow:0 0 0 1px rgba(245,193,74,.28), 0 18px 36px rgba(0,0,0,.24);
+      box-shadow:0 0 0 1px rgba(245,193,74,.24),0 18px 34px rgba(0,0,0,.26);
     }
 
     .project_img{
       width:100%;
       height:220px;
-      border-radius:14px;
+      border-radius:16px;
       overflow:hidden;
-      background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px dashed color-mix(in srgb, var(--text) 16%, transparent);
       margin-bottom:16px;
+      border:1px dashed var(--line);
+      background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     }
+
     .project_img img{
       width:100%;
       height:100%;
       object-fit:cover;
-      transition:transform .4s ease, filter .4s ease;
+      transition:transform .35s ease, filter .35s ease;
     }
+
     .project_card:hover .project_img img{
       transform:scale(1.06);
       filter:brightness(1.04);
     }
+
     .project_badge{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       background:var(--yellow);
       color:#111;
-      font-size:12px;
-      font-weight:800;
       padding:6px 10px;
       border-radius:999px;
+      font-size:12px;
+      font-weight:800;
       text-transform:uppercase;
-      margin-bottom:12px;
       letter-spacing:.06em;
+      margin-bottom:12px;
     }
+
     .project_title{
       margin:0 0 12px;
       font-size:20px;
-      line-height:1.45;
+      line-height:1.42;
       font-weight:800;
-      color:var(--white);
+      color:var(--text);
     }
+
     .project_meta{
       margin:0 0 8px;
       color:var(--muted);
       font-size:14px;
-      line-height:1.7;
+      line-height:1.75;
     }
+
     .project_meta span{
       color:var(--yellow);
       font-weight:800;
@@ -539,76 +571,86 @@
         linear-gradient(var(--video-overlay), var(--video-overlay)),
         url("assets/images/video/video-bg.jpg") center/cover no-repeat;
     }
+
     .video_box{
-      display:flex;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:24px;
       align-items:center;
-      justify-content:space-between;
-      gap:30px;
     }
+
     .video_text h3{
-      font-size:40px;
-      line-height:1.25;
-      font-weight:800;
       margin:0 0 16px;
-      color:var(--white);
-      max-width:700px;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.2;
+      font-weight:800;
+      color:#fff;
+      max-width:720px;
     }
+
     .video_text p{
-      color:var(--muted);
-      line-height:1.85;
       margin:0;
       max-width:620px;
+      color:rgba(255,255,255,.8);
+      line-height:1.9;
+      font-size:15px;
     }
+
     .video_play{
-      width:130px;
-      height:130px;
+      width:128px;
+      height:128px;
       border-radius:50%;
+      border:2px dashed var(--yellow);
+      background:rgba(0,0,0,.18);
+      color:var(--yellow);
+      font-size:28px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border:2px dashed var(--yellow);
-      color:var(--yellow);
-      font-size:28px;
-      transition:.28s ease;
-      flex-shrink:0;
-      background:rgba(0,0,0,.18);
       cursor:pointer;
+      transition:.24s ease;
+      flex-shrink:0;
     }
+
     .video_play:hover{
-      transform:scale(1.06);
-      box-shadow:0 0 28px rgba(245,193,74,.18);
+      transform:scale(1.05);
+      box-shadow:0 0 26px rgba(245,193,74,.18);
     }
 
     .video-modal{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.78);
+      background:rgba(0,0,0,.8);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:24px;
+      padding:20px;
       z-index:2000;
       opacity:0;
       visibility:hidden;
-      transition:.25s ease;
+      transition:.24s ease;
     }
+
     .video-modal.active{
       opacity:1;
       visibility:visible;
     }
+
     .video-modal-inner{
-      width:min(980px, 100%);
+      width:min(980px,100%);
       background:#000;
       border-radius:18px;
       overflow:hidden;
       position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,.4);
-      transform:translateY(12px) scale(.98);
-      transition:.25s ease;
+      transform:translateY(10px) scale(.98);
+      transition:.24s ease;
+      box-shadow:0 20px 60px rgba(0,0,0,.42);
     }
+
     .video-modal.active .video-modal-inner{
       transform:translateY(0) scale(1);
     }
+
     .video-close{
       position:absolute;
       top:14px;
@@ -619,15 +661,90 @@
       border-radius:50%;
       background:rgba(255,255,255,.14);
       color:#fff;
-      font-size:18px;
       cursor:pointer;
+      font-size:18px;
       z-index:5;
     }
+
     .video-modal video{
       width:100%;
       display:block;
       max-height:80vh;
       background:#000;
+    }
+
+    /* Counter */
+    .counter_wrap{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .counter_item{
+      padding:26px 20px;
+      text-align:center;
+    }
+
+    .counter_item h3{
+      margin:0 0 10px;
+      font-size:40px;
+      font-weight:800;
+      color:var(--yellow);
+    }
+
+    .counter_item p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
+    /* Services */
+    .services_grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .service_card{
+      padding:24px;
+      transition:.25s ease;
+    }
+
+    .service_card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(245,193,74,.28);
+      box-shadow:0 18px 34px rgba(0,0,0,.26),0 0 18px rgba(245,193,74,.08);
+    }
+
+    .service_icon{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--yellow-soft);
+      border:1px solid rgba(245,193,74,.22);
+      color:var(--yellow);
+      font-size:20px;
+      margin-bottom:16px;
+    }
+
+    .service_card h4{
+      margin:0 0 10px;
+      font-size:20px;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    .service_card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.85;
     }
 
     /* HR */
@@ -636,25 +753,25 @@
       grid-template-columns:repeat(3,1fr);
       gap:20px;
     }
+
     .hr_card{
       padding:28px 22px;
+      min-height:220px;
       text-align:center;
       transition:.25s ease;
-      min-height:220px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
     }
+
     .hr_card:hover{
       transform:translateY(-6px);
-      border-color:rgba(245,193,74,.26);
-      box-shadow:0 18px 34px rgba(0,0,0,.20), 0 0 20px rgba(245,193,74,.08);
+      border-color:rgba(245,193,74,.28);
+      box-shadow:0 18px 34px rgba(0,0,0,.26),0 0 18px rgba(245,193,74,.08);
     }
+
     .hr_number{
       width:76px;
       height:76px;
       border-radius:50%;
+      margin:0 auto 18px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -662,83 +779,94 @@
       color:#111;
       font-size:28px;
       font-weight:800;
-      margin:0 auto 18px;
-      box-shadow:0 14px 28px rgba(245,193,74,.16);
+      box-shadow:0 12px 24px rgba(245,193,74,.18);
     }
+
     .hr_card h4{
       margin:0 0 10px;
       font-size:20px;
       font-weight:800;
-      color:var(--white);
+      color:var(--text);
     }
+
     .hr_card p{
       margin:0;
       color:var(--muted);
+      line-height:1.85;
       font-size:14px;
-      line-height:1.8;
     }
 
     /* Contact */
     .contact_grid{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
+      grid-template-columns:1.15fr .85fr;
       gap:24px;
       align-items:start;
     }
+
     .contact_form_wrap{
       padding:28px;
     }
+
     .contact_form_wrap h3{
       margin:0 0 10px;
       font-size:34px;
       font-weight:800;
-      color:var(--white);
+      color:var(--text);
     }
+
     .contact_form_wrap p{
       margin:0 0 24px;
       color:var(--muted);
-      line-height:1.85;
+      line-height:1.9;
       font-size:15px;
     }
+
     .form_grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:16px;
     }
+
     .form_group.full{grid-column:1/-1}
+
     .form_control{
       width:100%;
-      background:var(--input-bg);
-      border:1px solid var(--input-border);
-      border-radius:14px;
       padding:15px 16px;
+      border-radius:14px;
+      border:1px solid var(--input-border);
+      background:var(--input-bg);
       color:var(--text);
       outline:none;
-      transition:.24s ease;
-      font-family:inherit;
+      transition:.22s ease;
       font-size:14px;
+      font-family:inherit;
     }
+
     .form_control:focus{
-      border-color:rgba(245,193,74,.42);
+      border-color:rgba(245,193,74,.4);
       box-shadow:0 0 0 4px rgba(245,193,74,.08);
     }
+
     textarea.form_control{
       min-height:150px;
       resize:vertical;
     }
+
     .submit_btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       border:none;
+      border-radius:999px;
+      padding:14px 22px;
       background:var(--yellow);
       color:#111;
       font-weight:800;
-      padding:14px 22px;
-      border-radius:999px;
-      transition:.3s ease;
       cursor:pointer;
+      transition:.22s ease;
     }
+
     .submit_btn:hover{
       transform:translateY(-2px);
       box-shadow:0 12px 24px rgba(245,193,74,.2);
@@ -748,9 +876,11 @@
       display:grid;
       gap:16px;
     }
+
     .contact_info_box{
       padding:22px;
     }
+
     .contact_info_box h4{
       margin:0 0 10px;
       color:var(--yellow);
@@ -759,6 +889,7 @@
       text-transform:uppercase;
       letter-spacing:.05em;
     }
+
     .contact_info_box p,
     .contact_info_box a{
       margin:0;
@@ -768,49 +899,40 @@
       word-break:break-word;
     }
 
-    .lets-talk-title{
-      margin:0 0 12px;
-      font-size:18px;
-      font-weight:800;
-      color:var(--yellow);
-      text-transform:uppercase;
-      letter-spacing:.05em;
-    }
-    .lets-talk-line{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.8;
-    }
     .lets-talk-line strong{
-      color:var(--white);
+      color:var(--text);
       font-weight:700;
     }
 
     /* Footer */
     #footer_section{
       padding:42px 0;
-      border-top:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      border-top:1px solid var(--line);
       background:color-mix(in srgb, var(--bg) 92%, black 8%);
     }
+
     .footer_mail{
       text-align:center;
       margin-bottom:18px;
     }
+
     .footer_mail a{
+      color:var(--text);
       font-size:28px;
       font-weight:700;
-      color:var(--white);
-      transition:.25s ease;
+      transition:.22s ease;
     }
+
     .footer_mail a:hover{color:var(--yellow)}
+
     .footer_social{
       display:flex;
       justify-content:center;
       gap:14px;
-      margin-bottom:18px;
       flex-wrap:wrap;
+      margin-bottom:18px;
     }
+
     .footer_social a{
       width:42px;
       height:42px;
@@ -818,122 +940,166 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      border:1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      border:1px solid var(--line);
       color:var(--muted);
-      transition:.25s ease;
+      transition:.22s ease;
       font-size:16px;
     }
+
     .footer_social a:hover{
-      color:#111;
       background:var(--yellow);
+      color:#111;
       border-color:var(--yellow);
       transform:translateY(-2px);
     }
+
     .footer_copy{
+      margin:0;
       text-align:center;
       color:var(--muted);
       font-size:14px;
-      margin:0;
     }
 
-    @media (max-width: 1199px){
-      .timeline_wrap,
-      .services_grid,
+    /* Responsive */
+    @media (max-width: 1100px){
       .projects_grid,
-      .counter_wrap{
+      .services_grid,
+      .hr_grid,
+      .counter_wrap,
+      .timeline_wrap{
         grid-template-columns:repeat(2,1fr);
       }
-      .hr_grid{grid-template-columns:repeat(2,1fr)}
-      .contact_grid{grid-template-columns:1fr}
-      .hero-scroll-gallery{grid-template-columns:repeat(2,1fr)}
-    }
 
-    @media (max-width: 991px){
-      #header_sec{position:static}
-      #hero_section_slider{padding-top:110px}
-      .hero_content h1{font-size:44px}
-      .video_box{flex-direction:column;align-items:flex-start}
-      .navbar-wrap{justify-content:flex-end}
-      .navbar-nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}
-    }
-
-    @media (max-width: 767px){
-      .section-block{padding:75px 0}
-      .section-gap{height:52px}
-      .hero_content h1{font-size:34px}
-      .section_title{font-size:30px}
-      .timeline_wrap,
-      .services_grid,
-      .projects_grid,
-      .counter_wrap,
-      .hr_grid,
-      .hero-scroll-gallery{
+      .contact_grid,
+      .about_grid,
+      .hero_layout{
         grid-template-columns:1fr;
       }
-      .form_grid{grid-template-columns:1fr}
-      .footer_mail a{font-size:22px}
+
+      .hero_content{max-width:none}
+    }
+
+    @media (max-width: 900px){
+      .desktop_nav{display:none}
+      .menu-toggle{display:flex}
+      #header_sec{position:sticky}
+      #hero_section_slider{
+        min-height:auto;
+        padding:110px 0 70px;
+      }
+      .video_box{
+        grid-template-columns:1fr;
+        justify-items:start;
+      }
+    }
+
+    @media (max-width: 700px){
+      .section-block{padding:74px 0}
+      .section-gap{height:52px}
+
+      .projects_grid,
+      .services_grid,
+      .hr_grid,
+      .counter_wrap,
+      .timeline_wrap,
+      .about_features,
+      .hero_gallery{
+        grid-template-columns:1fr;
+      }
+
+      .hero_gallery_card.large{
+        grid-column:auto;
+      }
+
+      .hero_gallery_card img,
+      .hero_gallery_card.large img{
+        height:220px;
+      }
+
+      .form_grid{
+        grid-template-columns:1fr;
+      }
+
+      .footer_mail a{
+        font-size:22px;
+      }
+
+      .about_image img{
+        min-height:300px;
+      }
     }
   </style>
 </head>
-
 <body>
 
   <header id="header_sec">
     <div class="container">
-      <div class="row">
-        <div class="col-3 col-lg-2">
-          <div class="logo_section">
-            <a href="#hero_section_slider">
-              <img src="assets/images/header/header-logo.png" class="site_logo" alt="Engineering Steps logo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<span class=&quot;logo-fallback&quot;>Engineering Steps</span>');">
-            </a>
-          </div>
+      <div class="header_inner">
+        <div class="brand">
+          <a href="#hero_section_slider">
+            <img src="assets/images/header/header-logo.png" class="site_logo" alt="Engineering Steps logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span class=&quot;logo-fallback&quot;>Engineering Steps</span>');">
+          </a>
         </div>
 
-        <div class="col-9 col-lg-10">
-          <div class="navbar-wrap">
-            <nav class="navbar navbar-expand-lg navbar-light p-0">
-              <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#hero_section_slider">HOME</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about_sec">ABOUT</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services_profile">SERVICES</a></li>
-                <li class="nav-item"><a class="nav-link" href="#timeline_sec">TIMELINE</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects_sec">PROJECTS</a></li>
-                <li class="nav-item"><a class="nav-link" href="#hr_sec">HUMAN RESOURCES</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact_sec">CONTACT</a></li>
-              </ul>
-            </nav>
+        <div class="header_right">
+          <nav class="desktop_nav">
+            <a href="#hero_section_slider">HOME</a>
+            <a href="#about_sec">ABOUT</a>
+            <a href="#services_profile">SERVICES</a>
+            <a href="#timeline_sec">TIMELINE</a>
+            <a href="#projects_sec">PROJECTS</a>
+            <a href="#hr_sec">HUMAN RESOURCES</a>
+            <a href="#contact_sec">CONTACT</a>
+          </nav>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark light mode">
-              <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
-          </div>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+          </button>
+
+          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
       </div>
+    </div>
+
+    <div class="mobile_menu" id="mobileMenu">
+      <nav class="mobile_nav">
+        <a href="#hero_section_slider">HOME</a>
+        <a href="#about_sec">ABOUT</a>
+        <a href="#services_profile">SERVICES</a>
+        <a href="#timeline_sec">TIMELINE</a>
+        <a href="#projects_sec">PROJECTS</a>
+        <a href="#hr_sec">HUMAN RESOURCES</a>
+        <a href="#contact_sec">CONTACT</a>
+      </nav>
     </div>
   </header>
 
   <section id="hero_section_slider">
     <div class="container">
-      <div class="hero_content" data-aos="fade-up" data-aos-duration="1000">
-        <h1>WE ARE <span class="bold_txt">ENGINEERING STEPS</span></h1>
-        <p>
-          Smart engineering solutions for electromechanical works, project delivery, and industrial construction — built on experience, quality, and commitment in every engineering step.
-        </p>
-        <a href="#contact_sec" class="hero_btn">
-          Have a project?
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
+      <div class="hero_layout">
+        <div class="hero_content" data-aos="fade-up" data-aos-duration="900">
+          <h1>WE ARE <span class="bold_txt">ENGINEERING STEPS</span></h1>
+          <p>
+            Smart engineering solutions for electromechanical works, project delivery, and industrial construction — built on experience, quality, and commitment in every engineering step.
+          </p>
+          <a href="#contact_sec" class="hero_btn">
+            Have a project?
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
 
-      <div class="hero-scroll-gallery">
-        <div class="hero-gallery-card" data-aos="fade-up" data-aos-duration="900">
-          <img src="assets/images/about/about-1.png" alt="Engineering Steps hero image 1">
-        </div>
-        <div class="hero-gallery-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
-          <img src="assets/images/about/about-2.png" alt="Engineering Steps hero image 2">
-        </div>
-        <div class="hero-gallery-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
-          <img src="assets/images/about/about-3.png" alt="Engineering Steps hero image 3">
+        <div class="hero_gallery">
+          <div class="hero_gallery_card card large" data-aos="fade-up" data-aos-duration="900">
+            <img src="assets/images/about/about-1.png" alt="Engineering Steps hero image 1">
+          </div>
+          <div class="hero_gallery_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+            <img src="assets/images/about/about-2.png" alt="Engineering Steps hero image 2">
+          </div>
+          <div class="hero_gallery_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+            <img src="assets/images/about/about-3.png" alt="Engineering Steps hero image 3">
+          </div>
         </div>
       </div>
     </div>
@@ -946,47 +1112,33 @@
       <div class="section-anim-line" data-aos="fade-right"></div>
       <p class="orange_box" data-aos="zoom-in">ABOUT</p>
 
-      <div class="row g-4 align-items-stretch">
-        <div class="col-lg-6">
-          <div class="about_image_card h-100" data-aos="fade-right" data-aos-duration="1000">
-            <img src="assets/images/about/about-4.png" alt="Engineering Steps about image">
-          </div>
+      <div class="about_grid">
+        <div class="about_image card" data-aos="fade-right" data-aos-duration="900">
+          <img src="assets/images/about/about-4.png" alt="Engineering Steps about image">
         </div>
 
-        <div class="col-lg-6">
-          <div class="info_card h-100" data-aos="fade-left" data-aos-duration="1000">
-            <h2 class="section_title">Engineering Steps Introduction</h2>
-            <p class="section_text">
-              Engineering STEPS is built on solid engineering expertise in electromechanical contracting and construction. We operate as an integrated engineering partner, committed to delivering projects with quality, safety, and efficiency. Our team combines field experience, technical leadership, and execution discipline to provide comprehensive solutions tailored to each project’s needs.
-            </p>
-          </div>
+        <div class="about_text_card card" data-aos="fade-left" data-aos-duration="900">
+          <h2 class="section_title">Engineering Steps Introduction</h2>
+          <p>
+            Engineering STEPS is built on solid engineering expertise in electromechanical contracting and construction. We operate as an integrated engineering partner, committed to delivering projects with quality, safety, and efficiency. Our team combines field experience, technical leadership, and execution discipline to provide comprehensive solutions tailored to each project’s needs.
+          </p>
+        </div>
+      </div>
+
+      <div class="about_features">
+        <div class="feature_card card" data-aos="fade-up" data-aos-duration="900">
+          <h3>Engineering Perspective</h3>
+          <p>A forward-looking engineering vision that drives every project we undertake, shaping smarter solutions and a stronger future.</p>
         </div>
 
-        <div class="col-lg-4">
-          <div class="info_card" data-aos="fade-up" data-aos-duration="1000">
-            <h3>Engineering Perspective</h3>
-            <p>
-              A forward-looking engineering vision that drives every project we undertake, shaping smarter solutions and a stronger future.
-            </p>
-          </div>
+        <div class="feature_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+          <h3>Engineering Vision</h3>
+          <p>To build a strong electromechanical presence locally and beyond through consistent quality, client trust, and sustainable engineering growth.</p>
         </div>
 
-        <div class="col-lg-4">
-          <div class="info_card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-            <h3>Engineering Vision</h3>
-            <p>
-              To build a strong electromechanical presence locally and beyond through consistent quality, client trust, and sustainable engineering growth.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="info_card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-            <h3>Engineering Commitment</h3>
-            <p>
-              At Engineering STEPS, we deliver reliable and high-quality engineering solutions through precision, innovation, and client focus.
-            </p>
-          </div>
+        <div class="feature_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+          <h3>Engineering Commitment</h3>
+          <p>At Engineering STEPS, we deliver reliable and high-quality engineering solutions through precision, innovation, and client focus.</p>
         </div>
       </div>
     </div>
@@ -1000,7 +1152,7 @@
       <p class="orange_box" data-aos="zoom-in">TIMELINE</p>
 
       <div class="timeline_wrap">
-        <div class="timeline_item" data-aos="fade-up" data-aos-duration="1000">
+        <div class="timeline_item" data-aos="fade-up" data-aos-duration="900">
           <div class="timeline_year">2012</div>
           <div class="timeline_card">
             <h3>The Beginning</h3>
@@ -1008,7 +1160,7 @@
           </div>
         </div>
 
-        <div class="timeline_item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+        <div class="timeline_item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
           <div class="timeline_year">2017</div>
           <div class="timeline_card">
             <h3>Expansion of Expertise</h3>
@@ -1016,7 +1168,7 @@
           </div>
         </div>
 
-        <div class="timeline_item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+        <div class="timeline_item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
           <div class="timeline_year">2022</div>
           <div class="timeline_card">
             <h3>Strategic Alignment</h3>
@@ -1024,7 +1176,7 @@
           </div>
         </div>
 
-        <div class="timeline_item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+        <div class="timeline_item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="900">
           <div class="timeline_year">2025</div>
           <div class="timeline_card">
             <h3>Launch in Saudi Arabia</h3>
@@ -1044,7 +1196,7 @@
       <h2 class="section_title" data-aos="fade-up">Engineering Projects</h2>
 
       <div class="projects_grid">
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project1.jpg" alt="Bahr El Baqar Treatment Station"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Bahr El Baqar Treatment Station</h3>
@@ -1052,7 +1204,7 @@
           <p class="project_meta"><span>•</span> Scope: HVAC</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="40">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
           <div class="project_img"><img src="assets/images/projects/project2.jpg" alt="Body Line Cooling Upgrade Project – General Motors"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Body Line Cooling Upgrade Project – General Motors</h3>
@@ -1060,7 +1212,7 @@
           <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="80">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
           <div class="project_img"><img src="assets/images/projects/project3.jpg" alt="Konouz El Galala Showroom (1,2)"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Konouz El Galala Showroom (1,2)</h3>
@@ -1068,7 +1220,7 @@
           <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project4.jpg" alt="Factory Work Environment Quality Improvement – Eastern Company"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Factory Work Environment Quality Improvement – Eastern Company</h3>
@@ -1076,7 +1228,7 @@
           <p class="project_meta"><span>•</span> Scope: HVAC</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="40">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
           <div class="project_img"><img src="assets/images/projects/project5.jpg" alt="Mastercard VIP Lounge – Cairo Airport"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Mastercard VIP Lounge – Cairo Airport</h3>
@@ -1084,7 +1236,7 @@
           <p class="project_meta"><span>•</span> Scope: MEP</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="80">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
           <div class="project_img"><img src="assets/images/projects/project6.jpg" alt="Zafaran Palace – Ain Shams University"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Zafaran Palace – Ain Shams University</h3>
@@ -1092,7 +1244,7 @@
           <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project7.jpg" alt="Residential District Firefighting Installation – New Administrative Capital"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Residential District Firefighting Installation – New Administrative Capital</h3>
@@ -1100,7 +1252,7 @@
           <p class="project_meta"><span>•</span> Scope: Firefighting Systems</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="40">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
           <div class="project_img"><img src="assets/images/projects/project8.jpg" alt="Senators Building – New Administrative Capital"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Senators Building – New Administrative Capital</h3>
@@ -1108,7 +1260,7 @@
           <p class="project_meta"><span>•</span> Scope: HVAC</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="80">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
           <div class="project_img"><img src="assets/images/projects/project9.jpg" alt="Adly Mansour Mall – Plumbing System Installation"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Adly Mansour Mall – Plumbing System Installation</h3>
@@ -1116,7 +1268,7 @@
           <p class="project_meta"><span>•</span> Scope: Plumbing Systems</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project10.jpg" alt="Boiler System Upgrade Project – Dakahlia Slaughterhouse"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Boiler System Upgrade Project – Dakahlia Slaughterhouse</h3>
@@ -1124,7 +1276,7 @@
           <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="40">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
           <div class="project_img"><img src="assets/images/projects/project11.jpg" alt="Four Seasons Villas – MEP Systems Installation"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Four Seasons Villas – MEP Systems Installation</h3>
@@ -1132,7 +1284,7 @@
           <p class="project_meta"><span>•</span> Scope: MEP</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="80">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
           <div class="project_img"><img src="assets/images/projects/project12.jpg" alt="Fire Safety System Installation Project – Verdi Foods (Investment Zone)"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Fire Safety System Installation Project – Verdi Foods (Investment Zone)</h3>
@@ -1140,7 +1292,7 @@
           <p class="project_meta"><span>•</span> Scope: MEP</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project13.jpg" alt="Information Technology Innovation Center – VRV System Installation"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Information Technology Innovation Center – VRV System Installation</h3>
@@ -1148,7 +1300,7 @@
           <p class="project_meta"><span>•</span> Scope: HVAC</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="40">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
           <div class="project_img"><img src="assets/images/projects/project14.jpg" alt="ORION Food Industries"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">ORION Food Industries</h3>
@@ -1156,14 +1308,14 @@
           <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up" data-aos-delay="80">
+        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
           <div class="project_img"><img src="assets/images/projects/project15.jpg" alt="Bahteem Hospital Renovation"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">Bahteem Hospital Renovation</h3>
           <p class="project_meta"><span>•</span> Scope: Fire Protection Upgrade</p>
         </div>
 
-        <div class="project_card" data-aos="fade-up">
+        <div class="project_card card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project16.jpg" alt="National Egyptian Railway Industries Co. – Rolling Stock Plant"></div>
           <div class="project_badge">Project</div>
           <h3 class="project_title">National Egyptian Railway Industries Co. – Rolling Stock Plant</h3>
@@ -1178,14 +1330,14 @@
   <section id="video_sec">
     <div class="container">
       <div class="video_box">
-        <div class="video_text" data-aos="fade-right" data-aos-duration="1000">
+        <div class="video_text" data-aos="fade-right" data-aos-duration="900">
           <h3>Engineering Solutions That Power Progress & Protect Every Project</h3>
           <p>
             From HVAC and MEP works to fire fighting systems and industrial engineering installations, Engineering STEPS delivers practical solutions built for performance and long-term value.
           </p>
         </div>
 
-        <button class="video_play" id="openVideoModal" data-aos="zoom-in" data-aos-duration="1000" type="button">
+        <button class="video_play" id="openVideoModal" type="button" data-aos="zoom-in" data-aos-duration="900">
           <i class="fa-solid fa-play"></i>
         </button>
       </div>
@@ -1209,19 +1361,19 @@
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
       <div class="counter_wrap">
-        <div class="counter_item" data-aos="fade-up">
+        <div class="counter_item card" data-aos="fade-up">
           <h3>+100</h3>
           <p>Project Completed</p>
         </div>
-        <div class="counter_item" data-aos="fade-up" data-aos-delay="100">
+        <div class="counter_item card" data-aos="fade-up" data-aos-delay="100">
           <h3>+12</h3>
           <p>Years of Experience</p>
         </div>
-        <div class="counter_item" data-aos="fade-up" data-aos-delay="200">
+        <div class="counter_item card" data-aos="fade-up" data-aos-delay="200">
           <h3>37</h3>
           <p>Satisfied Clients</p>
         </div>
-        <div class="counter_item" data-aos="fade-up" data-aos-delay="300">
+        <div class="counter_item card" data-aos="fade-up" data-aos-delay="300">
           <h3>+100</h3>
           <p>Engineering Professionals</p>
         </div>
@@ -1238,55 +1390,55 @@
       <h2 class="section_title" data-aos="fade-up">What We Deliver</h2>
 
       <div class="services_grid">
-        <div class="service_card" data-aos="fade-up">
+        <div class="service_card card" data-aos="fade-up">
           <div class="service_icon"><i class="fa-solid fa-pen-ruler"></i></div>
           <h4>Fit Out</h4>
           <p>Exceptional finishing work with careful detailing, high-quality execution, and a clean final handover.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="50">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
           <div class="service_icon"><i class="fa-solid fa-fan"></i></div>
           <h4>HVAC</h4>
           <p>Supply and installation of HVAC systems including chillers, ducts, ventilation, hoods, and extraction systems.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
           <div class="service_icon"><i class="fa-solid fa-faucet-drip"></i></div>
           <h4>Plumbing Systems</h4>
           <p>Complete plumbing stations, pumps, tanks, and integrated system support for major engineering projects.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up">
+        <div class="service_card card" data-aos="fade-up">
           <div class="service_icon"><i class="fa-solid fa-building-circle-check"></i></div>
           <h4>Facility Management</h4>
           <p>Proactive maintenance and responsive support that keep facilities efficient, functional, and safe.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="50">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
           <div class="service_icon"><i class="fa-solid fa-fire-extinguisher"></i></div>
           <h4>Fire Fighting Systems</h4>
           <p>Up-to-date fire fighting systems designed in line with international regulations and project safety requirements.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
           <div class="service_icon"><i class="fa-solid fa-wind"></i></div>
           <h4>Compressed Air Systems</h4>
           <p>Efficient compressed air networks with dependable engineering installation and after-sales support.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up">
+        <div class="service_card card" data-aos="fade-up">
           <div class="service_icon"><i class="fa-solid fa-network-wired"></i></div>
           <h4>Low Current Systems</h4>
           <p>Engineering for fire alarms, CCTV, access control, telecom networks, and structured cabling solutions.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="50">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
           <div class="service_icon"><i class="fa-solid fa-gears"></i></div>
           <h4>Mechanical Installation</h4>
           <p>Mechanical engineering solutions aligned with demanding factory and production environments.</p>
         </div>
 
-        <div class="service_card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
           <div class="service_icon"><i class="fa-solid fa-diagram-project"></i></div>
           <h4>Project Management</h4>
           <p>Full project control including scheduling, coordination, quality follow-up, and delivery management.</p>
@@ -1304,37 +1456,37 @@
       <h2 class="section_title" data-aos="fade-up">Engineering Human Resources Capacity</h2>
 
       <div class="hr_grid">
-        <div class="hr_card" data-aos="fade-up">
+        <div class="hr_card card" data-aos="fade-up">
           <div class="hr_number">20</div>
           <h4>Engineers</h4>
           <p>Qualified engineering professionals across different disciplines and project environments.</p>
         </div>
 
-        <div class="hr_card" data-aos="fade-up" data-aos-delay="60">
+        <div class="hr_card card" data-aos="fade-up" data-aos-delay="60">
           <div class="hr_number">4</div>
           <h4>Accountant & Finance</h4>
           <p>Financial and accounting support for project control, planning, and reporting.</p>
         </div>
 
-        <div class="hr_card" data-aos="fade-up" data-aos-delay="120">
+        <div class="hr_card card" data-aos="fade-up" data-aos-delay="120">
           <div class="hr_number">2</div>
           <h4>Admin / HR</h4>
           <p>Administrative organization and human resources support for daily operations.</p>
         </div>
 
-        <div class="hr_card" data-aos="fade-up">
+        <div class="hr_card card" data-aos="fade-up">
           <div class="hr_number">4</div>
           <h4>Procurement</h4>
           <p>Material sourcing, vendor coordination, and procurement follow-up for engineering projects.</p>
         </div>
 
-        <div class="hr_card" data-aos="fade-up" data-aos-delay="60">
+        <div class="hr_card card" data-aos="fade-up" data-aos-delay="60">
           <div class="hr_number">6</div>
           <h4>Technical Supervisors</h4>
           <p>Field supervision, quality monitoring, and site coordination across engineering works.</p>
         </div>
 
-        <div class="hr_card" data-aos="fade-up" data-aos-delay="120">
+        <div class="hr_card card" data-aos="fade-up" data-aos-delay="120">
           <div class="hr_number">45</div>
           <h4>Technicians & Workers</h4>
           <p>Skilled site teams supporting execution, installation, and delivery across disciplines.</p>
@@ -1351,7 +1503,7 @@
       <p class="orange_box" data-aos="zoom-in">CONTACT</p>
 
       <div class="contact_grid">
-        <div class="contact_form_wrap" data-aos="fade-up" data-aos-duration="1000">
+        <div class="contact_form_wrap card" data-aos="fade-up" data-aos-duration="900">
           <h3>Let’s Start Working</h3>
           <p>
             Fill in your details and click send. The form will open your email app and prepare the message directly to Engineering Steps.
@@ -1360,13 +1512,13 @@
           <form id="contactForm">
             <div class="form_grid">
               <div class="form_group">
-                <input type="text" id="name" class="form_control" placeholder="Your Name" required />
+                <input type="text" id="name" class="form_control" placeholder="Your Name" required>
               </div>
               <div class="form_group">
-                <input type="email" id="email" class="form_control" placeholder="Your Email" required />
+                <input type="email" id="email" class="form_control" placeholder="Your Email" required>
               </div>
               <div class="form_group full">
-                <input type="text" id="subject" class="form_control" placeholder="Subject" required />
+                <input type="text" id="subject" class="form_control" placeholder="Subject" required>
               </div>
               <div class="form_group full">
                 <textarea id="message" class="form_control" placeholder="Your Message" required></textarea>
@@ -1378,19 +1530,19 @@
           </form>
         </div>
 
-        <div class="contact_info_wrap" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-          <div class="contact_info_box">
-            <h4 class="lets-talk-title">Let’s Talk</h4>
+        <div class="contact_info_wrap" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+          <div class="contact_info_box card">
+            <h4>Let’s Talk</h4>
             <p class="lets-talk-line"><strong>Phone:</strong> <a href="tel:+201050003626">+201050003626</a></p>
             <p class="lets-talk-line"><strong>Email:</strong> <a href="mailto:steps@eng-steps.com">steps@eng-steps.com</a></p>
           </div>
 
-          <div class="contact_info_box">
+          <div class="contact_info_box card">
             <h4>Visiting Here</h4>
             <p>Al-Basateen District – Riyadh</p>
           </div>
 
-          <div class="contact_info_box">
+          <div class="contact_info_box card">
             <h4>Timing</h4>
             <p>Sun - Thu: 9 am to 6 pm</p>
           </div>
@@ -1419,13 +1571,15 @@
 
   <script src="assets/js/aos.js"></script>
   <script>
-    AOS.init({
-      once: true,
-      duration: 900,
-      offset: 60
-    });
+    if (typeof AOS !== "undefined") {
+      AOS.init({
+        once: true,
+        duration: 900,
+        offset: 60
+      });
+    }
 
-    // Highlight headings
+    // heading highlight
     (function () {
       const selector = 'h1, h2, h3, h4, .section_title';
       document.addEventListener('click', function (e) {
@@ -1436,7 +1590,7 @@
       });
     })();
 
-    // Project active state
+    // projects active
     (function () {
       const cards = document.querySelectorAll('.project_card');
       cards.forEach(card => {
@@ -1447,66 +1601,99 @@
       });
     })();
 
-    // Contact form -> mailto
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      const body =
-        "Name: " + encodeURIComponent(name) + "%0D%0A" +
-        "Email: " + encodeURIComponent(email) + "%0D%0A%0D%0A" +
-        "Message:%0D%0A" + encodeURIComponent(message);
-
-      const mailtoLink = "mailto:steps@eng-steps.com?subject=" + encodeURIComponent(subject) + "&body=" + body;
-      window.location.href = mailtoLink;
+    // mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('open')) {
+        icon.className = 'fa-solid fa-xmark';
+      } else {
+        icon.className = 'fa-solid fa-bars';
+      }
     });
 
-    // Video popup
+    document.querySelectorAll('.mobile_nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+      });
+    });
+
+    // contact form -> mailto
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const body =
+          "Name: " + encodeURIComponent(name) + "%0D%0A" +
+          "Email: " + encodeURIComponent(email) + "%0D%0A%0D%0A" +
+          "Message:%0D%0A" + encodeURIComponent(message);
+
+        const mailtoLink =
+          "mailto:steps@eng-steps.com?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" + body;
+
+        window.location.href = mailtoLink;
+      });
+    }
+
+    // video popup
     const videoModal = document.getElementById('videoModal');
     const openVideoModal = document.getElementById('openVideoModal');
     const closeVideoModal = document.getElementById('closeVideoModal');
     const popupVideo = document.getElementById('popupVideo');
 
-    openVideoModal.addEventListener('click', function () {
-      videoModal.classList.add('active');
-      popupVideo.play();
-    });
+    if (openVideoModal && closeVideoModal && videoModal && popupVideo) {
+      openVideoModal.addEventListener('click', function () {
+        videoModal.classList.add('active');
+        popupVideo.play();
+      });
 
-    closeVideoModal.addEventListener('click', function () {
-      videoModal.classList.remove('active');
-      popupVideo.pause();
-      popupVideo.currentTime = 0;
-    });
-
-    videoModal.addEventListener('click', function (e) {
-      if (e.target === videoModal) {
+      closeVideoModal.addEventListener('click', function () {
         videoModal.classList.remove('active');
         popupVideo.pause();
         popupVideo.currentTime = 0;
-      }
-    });
+      });
 
-    // Dark / Light Toggle
+      videoModal.addEventListener('click', function (e) {
+        if (e.target === videoModal) {
+          videoModal.classList.remove('active');
+          popupVideo.pause();
+          popupVideo.currentTime = 0;
+        }
+      });
+    }
+
+    // theme toggle
+    const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
-    const html = document.documentElement;
-
     const savedTheme = localStorage.getItem('engineering-steps-theme');
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('engineering-steps-theme', theme);
+      themeIcon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
     if (savedTheme) {
-      html.setAttribute('data-theme', savedTheme);
-      themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      setTheme(savedTheme);
+    } else {
+      setTheme('dark');
     }
 
     themeToggle.addEventListener('click', function () {
       const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('engineering-steps-theme', next);
-      themeIcon.className = next === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      setTheme(current === 'dark' ? 'light' : 'dark');
     });
   </script>
 </body>
