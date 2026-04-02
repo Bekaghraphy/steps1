@@ -320,50 +320,6 @@
       box-shadow:0 12px 24px rgba(245,193,74,.24);
     }
 
-    /* Gallery section */
-    .gallery_grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .gallery_card{
-      position:relative;
-      overflow:hidden;
-      padding:10px;
-    }
-
-    .gallery_card img{
-      width:100%;
-      height:270px;
-      object-fit:cover;
-      border-radius:16px;
-      transition:transform .35s ease,filter .35s ease;
-    }
-
-    .gallery_card:hover img{
-      transform:scale(1.05);
-      filter:brightness(1.04);
-    }
-
-    .gallery_number{
-      position:absolute;
-      top:22px;
-      left:22px;
-      width:44px;
-      height:44px;
-      border-radius:50%;
-      background:var(--yellow);
-      color:#111;
-      font-weight:800;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 10px 20px rgba(245,193,74,.22);
-      z-index:2;
-    }
-
     /* About */
     .about_grid{
       display:grid;
@@ -954,16 +910,15 @@
     }
 
     /* Responsive */
-    @media (max-width: 1100px){
-      .gallery_grid,
-      .projects_grid,
-      .services_grid,
-      .hr_grid,
-      .counter_wrap,
-      .timeline_wrap{
-        grid-template-columns:repeat(2,1fr);
-      }
-
+@media (max-width: 1100px){
+  .projects_grid,
+  .services_grid,
+  .hr_grid,
+  .counter_wrap,
+  .timeline_wrap{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
       .about_grid,
       .contact_grid{
         grid-template-columns:1fr;
@@ -983,20 +938,16 @@
       }
     }
 
-    @media (max-width: 700px){
-      .section-block{padding:74px 0}
-      .section-gap{height:52px}
-
-      .gallery_grid,
-      .projects_grid,
-      .services_grid,
-      .hr_grid,
-      .counter_wrap,
-      .timeline_wrap,
-      .about_features{
-        grid-template-columns:1fr;
-      }
-
+ @media (max-width: 700px){
+  .projects_grid,
+  .services_grid,
+  .hr_grid,
+  .counter_wrap,
+  .timeline_wrap,
+  .about_features{
+    grid-template-columns:1fr;
+  }
+}
       .form_grid{
         grid-template-columns:1fr;
       }
@@ -1025,7 +976,6 @@
         <div class="header_right">
           <nav class="desktop_nav">
             <a href="#hero_section_slider" data-en="HOME" data-ar="الرئيسية">HOME</a>
-            <a href="#gallery_sec" data-en="GALLERY" data-ar="الجاليري">GALLERY</a>
             <a href="#about_sec" data-en="ABOUT" data-ar="من نحن">ABOUT</a>
             <a href="#services_profile" data-en="SERVICES" data-ar="الخدمات">SERVICES</a>
             <a href="#timeline_sec" data-en="TIMELINE" data-ar="الخط الزمني">TIMELINE</a>
@@ -1048,7 +998,6 @@
     <div class="mobile_menu" id="mobileMenu">
       <nav class="mobile_nav">
         <a href="#hero_section_slider" data-en="HOME" data-ar="الرئيسية">HOME</a>
-        <a href="#gallery_sec" data-en="GALLERY" data-ar="الجاليري">GALLERY</a>
         <a href="#about_sec" data-en="ABOUT" data-ar="من نحن">ABOUT</a>
         <a href="#services_profile" data-en="SERVICES" data-ar="الخدمات">SERVICES</a>
         <a href="#timeline_sec" data-en="TIMELINE" data-ar="الخط الزمني">TIMELINE</a>
@@ -1074,34 +1023,6 @@
       </div>
     </div>
   </section>
-
-  <div class="section-gap"></div>
-
-  <section id="gallery_sec" class="section-block">
-    <div class="container">
-      <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-en="GALLERY" data-ar="الجاليري">GALLERY</p>
-      <h2 class="section_title" data-en="Engineering Gallery" data-ar="معرض Engineering Steps">Engineering Gallery</h2>
-
-      <div class="gallery_grid">
-        <div class="gallery_card card" data-aos="fade-up" data-aos-duration="900">
-          <div class="gallery_number">1</div>
-          <img src="assets/images/about/about-1.png" alt="Gallery image 1">
-        </div>
-
-        <div class="gallery_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
-          <div class="gallery_number">2</div>
-          <img src="assets/images/about/about-2.png" alt="Gallery image 2">
-        </div>
-
-        <div class="gallery_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
-          <div class="gallery_number">3</div>
-          <img src="assets/images/about/about-3.png" alt="Gallery image 3">
-        </div>
-      </div>
-    </div>
-  </section>
-
   <div class="section-gap"></div>
 
   <section id="about_sec" class="section-block">
