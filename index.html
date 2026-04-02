@@ -154,6 +154,7 @@
       display:flex;
       align-items:center;
       gap:12px;
+      min-width:0;
     }
 
     .site_logo{
@@ -173,7 +174,7 @@
     .header_right{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
     }
 
     .desktop_nav{
@@ -193,7 +194,9 @@
     }
 
     .desktop_nav a:hover,
-    .mobile_nav a:hover{color:var(--yellow)}
+    .mobile_nav a:hover{
+      color:var(--yellow);
+    }
 
     .desktop_nav a::after,
     .mobile_nav a::after{
@@ -208,7 +211,9 @@
     }
 
     .desktop_nav a:hover::after,
-    .mobile_nav a:hover::after{width:100%}
+    .mobile_nav a:hover::after{
+      width:100%;
+    }
 
     .tool-btn{
       width:44px;
@@ -242,7 +247,9 @@
       font-size:13px;
     }
 
-    .menu-toggle{display:none}
+    .menu-toggle{
+      display:none;
+    }
 
     .mobile_menu{
       position:fixed;
@@ -267,7 +274,14 @@
     .mobile_nav{
       display:flex;
       flex-direction:column;
-      gap:16px;
+      gap:14px;
+    }
+
+    .mobile_nav a{
+      display:block;
+      padding:10px 0;
+      font-size:16px;
+      font-weight:700;
     }
 
     /* Hero */
@@ -293,7 +307,9 @@
       color:#fff;
     }
 
-    .hero_content .bold_txt{color:var(--yellow)}
+    .hero_content .bold_txt{
+      color:var(--yellow);
+    }
 
     .hero_content p{
       margin:0 0 28px;
@@ -452,7 +468,9 @@
       box-shadow:0 20px 42px rgba(0,0,0,.28),0 0 22px rgba(245,193,74,.08);
     }
 
-    .project_card:hover::before{opacity:1}
+    .project_card:hover::before{
+      opacity:1;
+    }
 
     .project_card.active-project{
       border-color:rgba(245,193,74,.44);
@@ -778,7 +796,9 @@
       gap:16px;
     }
 
-    .form_group.full{grid-column:1/-1}
+    .form_group.full{
+      grid-column:1/-1;
+    }
 
     .form_control{
       width:100%;
@@ -872,7 +892,9 @@
       transition:.22s ease;
     }
 
-    .footer_mail a:hover{color:var(--yellow)}
+    .footer_mail a:hover{
+      color:var(--yellow);
+    }
 
     .footer_social{
       display:flex;
@@ -910,15 +932,15 @@
     }
 
     /* Responsive */
-@media (max-width: 1100px){
-  .projects_grid,
-  .services_grid,
-  .hr_grid,
-  .counter_wrap,
-  .timeline_wrap{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
+    @media (max-width: 1100px){
+      .projects_grid,
+      .services_grid,
+      .hr_grid,
+      .counter_wrap,
+      .timeline_wrap{
+        grid-template-columns:repeat(2,1fr);
+      }
+
       .about_grid,
       .contact_grid{
         grid-template-columns:1fr;
@@ -926,28 +948,43 @@
     }
 
     @media (max-width: 900px){
-      .desktop_nav{display:none}
-      .menu-toggle{display:flex}
+      .desktop_nav{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:flex;
+      }
+
       #hero_section_slider{
         min-height:auto;
         padding:110px 0 70px;
       }
+
       .video_box{
         grid-template-columns:1fr;
         justify-items:start;
       }
     }
 
- @media (max-width: 700px){
-  .projects_grid,
-  .services_grid,
-  .hr_grid,
-  .counter_wrap,
-  .timeline_wrap,
-  .about_features{
-    grid-template-columns:1fr;
-  }
-}
+    @media (max-width: 700px){
+      .section-block{
+        padding:74px 0;
+      }
+
+      .section-gap{
+        height:52px;
+      }
+
+      .projects_grid,
+      .services_grid,
+      .hr_grid,
+      .counter_wrap,
+      .timeline_wrap,
+      .about_features{
+        grid-template-columns:1fr;
+      }
+
       .form_grid{
         grid-template-columns:1fr;
       }
@@ -1023,6 +1060,7 @@
       </div>
     </div>
   </section>
+
   <div class="section-gap"></div>
 
   <section id="about_sec" class="section-block">
@@ -1032,7 +1070,7 @@
 
       <div class="about_grid">
         <div class="about_image card" data-aos="fade-right" data-aos-duration="900">
-          <img src="assets/images/about/about-4.png" alt="Engineering Steps about image">
+          <img src="assets/images/about/about-1.png" alt="Engineering Steps about image">
         </div>
 
         <div class="about_text_card card" data-aos="fade-left" data-aos-duration="900">
@@ -1345,6 +1383,7 @@
     // mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', function () {
         mobileMenu.classList.toggle('open');
