@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,6 +26,25 @@
       --white:#fff;
       --shadow:0 14px 35px rgba(0,0,0,.28);
       --radius:18px;
+      --hero-overlay:rgba(0,0,0,.60);
+      --video-overlay:rgba(0,0,0,.64);
+      --input-bg:rgba(255,255,255,.04);
+      --input-border:rgba(255,255,255,.10);
+    }
+
+    html[data-theme="light"]{
+      --bg:#f7f7f8;
+      --bg-soft:#ffffff;
+      --card:rgba(255,255,255,.96);
+      --line:rgba(0,0,0,.10);
+      --text:#111111;
+      --muted:rgba(17,17,17,.68);
+      --white:#111111;
+      --shadow:0 12px 28px rgba(0,0,0,.08);
+      --hero-overlay:rgba(255,255,255,.55);
+      --video-overlay:rgba(255,255,255,.62);
+      --input-bg:#ffffff;
+      --input-border:rgba(0,0,0,.10);
     }
 
     *{box-sizing:border-box}
@@ -36,6 +55,7 @@
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      transition:background .3s ease,color .3s ease;
     }
 
     a{text-decoration:none;color:inherit}
@@ -50,9 +70,9 @@
       left:0;
       width:100%;
       z-index:999;
-      background:rgba(10,10,10,.72);
+      background:color-mix(in srgb, var(--bg) 78%, transparent);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid color-mix(in srgb, var(--text) 8%, transparent);
     }
     #header_sec .row{
       align-items:center;
@@ -69,10 +89,18 @@
     }
     .logo-fallback{
       font-weight:800;
-      letter-spacing:.1em;
+      letter-spacing:.08em;
       font-size:18px;
-      color:var(--white);
+      color:var(--text);
       text-transform:uppercase;
+    }
+
+    .navbar-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:18px;
+      flex-wrap:wrap;
     }
 
     .navbar-nav{
@@ -80,14 +108,16 @@
       gap:18px;
       align-items:center;
       margin-left:auto;
+      flex-direction:row;
     }
     .nav-link{
-      color:#fff !important;
+      color:var(--text) !important;
       font-size:14px;
       font-weight:600;
       letter-spacing:.04em;
       transition:.25s ease;
       position:relative;
+      padding:0 !important;
     }
     .nav-link:hover,
     .nav-link.active{
@@ -105,6 +135,27 @@
     }
     .nav-link:hover::after{width:100%}
 
+    .theme-toggle{
+      border:none;
+      background:var(--card);
+      color:var(--text);
+      border:1px solid color-mix(in srgb, var(--text) 10%, transparent);
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:var(--shadow);
+    }
+    .theme-toggle:hover{
+      transform:translateY(-2px);
+      border-color:rgba(245,193,74,.35);
+      color:var(--yellow);
+    }
+
     /* Hero */
     #hero_section_slider{
       min-height:100vh;
@@ -112,18 +163,19 @@
       align-items:center;
       padding:140px 0 80px;
       background:
-        linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+        linear-gradient(var(--hero-overlay), var(--hero-overlay)),
         url("assets/images/hero/hero-1.jpg") center/cover no-repeat;
     }
     .hero_content{
       max-width:760px;
+      margin-bottom:26px;
     }
     .hero_content h1{
       font-size:58px;
       line-height:1.08;
       font-weight:800;
       margin:0 0 22px;
-      color:#fff;
+      color:var(--white);
     }
     .hero_content .bold_txt{color:var(--yellow)}
     .hero_content p{
@@ -149,10 +201,35 @@
       box-shadow:0 12px 28px rgba(245,193,74,.24);
     }
 
-    /* Common section spacing */
-    .section-block{
-      padding:95px 0;
+    .hero-scroll-gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:26px;
     }
+    .hero-gallery-card{
+      background:var(--card);
+      border:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      border-radius:18px;
+      padding:10px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
+    }
+    .hero-gallery-card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      border-radius:14px;
+      transition:transform .45s ease, filter .45s ease;
+    }
+    .hero-gallery-card:hover img{
+      transform:scale(1.05);
+      filter:brightness(1.04);
+    }
+
+    /* Common */
+    .section-block{padding:95px 0}
     .section-gap{
       height:70px;
       position:relative;
@@ -195,7 +272,7 @@
       line-height:1.15;
       font-weight:800;
       margin:0 0 14px;
-      color:#fff;
+      color:var(--white);
     }
     .section_text{
       color:var(--muted);
@@ -218,21 +295,23 @@
       text-shadow:0 0 20px rgba(245,193,74,.26);
     }
 
-    /* About */
+    /* Cards */
     .about_image_card,
     .info_card,
     .service_card,
     .project_card,
     .hr_card,
     .contact_form_wrap,
-    .contact_info_box{
+    .contact_info_box,
+    .counter_item{
       background:var(--card);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
+      border:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      border-radius:18px;
       box-shadow:var(--shadow);
       backdrop-filter:blur(6px);
     }
 
+    /* About */
     .about_image_card{
       overflow:hidden;
       padding:14px;
@@ -274,6 +353,10 @@
       box-shadow:0 10px 28px rgba(0,0,0,.12);
       height:100%;
     }
+    html[data-theme="light"] .timeline_item{
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,.08);
+    }
     .timeline_year{
       background:var(--yellow);
       color:#111;
@@ -304,12 +387,8 @@
       gap:18px;
     }
     .counter_item{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
       padding:26px 20px;
       text-align:center;
-      box-shadow:var(--shadow);
     }
     .counter_item h3{
       margin:0 0 10px;
@@ -340,7 +419,7 @@
     .service_card:hover{
       transform:translateY(-6px);
       border-color:rgba(245,193,74,.28);
-      box-shadow:0 18px 34px rgba(0,0,0,.34), 0 0 22px rgba(245,193,74,.08);
+      box-shadow:0 18px 34px rgba(0,0,0,.20), 0 0 22px rgba(245,193,74,.08);
     }
     .service_icon{
       width:58px;
@@ -359,7 +438,7 @@
       margin:0 0 10px;
       font-size:20px;
       font-weight:800;
-      color:#fff;
+      color:var(--white);
     }
     .service_card p{
       margin:0;
@@ -393,12 +472,12 @@
     .project_card:hover{
       transform:translateY(-8px) scale(1.01);
       border-color:rgba(245,193,74,.28);
-      box-shadow:0 20px 40px rgba(0,0,0,.35), 0 0 24px rgba(245,193,74,.08);
+      box-shadow:0 20px 40px rgba(0,0,0,.22), 0 0 24px rgba(245,193,74,.08);
     }
     .project_card:hover::before{opacity:1}
     .project_card.active-project{
       border-color:rgba(245,193,74,.48);
-      box-shadow:0 0 0 1px rgba(245,193,74,.28), 0 18px 36px rgba(0,0,0,.34);
+      box-shadow:0 0 0 1px rgba(245,193,74,.28), 0 18px 36px rgba(0,0,0,.24);
     }
 
     .project_img{
@@ -407,7 +486,7 @@
       border-radius:14px;
       overflow:hidden;
       background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px dashed rgba(255,255,255,.16);
+      border:1px dashed color-mix(in srgb, var(--text) 16%, transparent);
       margin-bottom:16px;
     }
     .project_img img{
@@ -439,7 +518,7 @@
       font-size:20px;
       line-height:1.45;
       font-weight:800;
-      color:#fff;
+      color:var(--white);
     }
     .project_meta{
       margin:0 0 8px;
@@ -457,7 +536,7 @@
     #video_sec{
       padding:110px 0;
       background:
-        linear-gradient(rgba(0,0,0,.64), rgba(0,0,0,.64)),
+        linear-gradient(var(--video-overlay), var(--video-overlay)),
         url("assets/images/video/video-bg.jpg") center/cover no-repeat;
     }
     .video_box{
@@ -471,7 +550,7 @@
       line-height:1.25;
       font-weight:800;
       margin:0 0 16px;
-      color:#fff;
+      color:var(--white);
       max-width:700px;
     }
     .video_text p{
@@ -492,10 +571,63 @@
       font-size:28px;
       transition:.28s ease;
       flex-shrink:0;
+      background:rgba(0,0,0,.18);
+      cursor:pointer;
     }
     .video_play:hover{
       transform:scale(1.06);
       box-shadow:0 0 28px rgba(245,193,74,.18);
+    }
+
+    .video-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.78);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      z-index:2000;
+      opacity:0;
+      visibility:hidden;
+      transition:.25s ease;
+    }
+    .video-modal.active{
+      opacity:1;
+      visibility:visible;
+    }
+    .video-modal-inner{
+      width:min(980px, 100%);
+      background:#000;
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 20px 60px rgba(0,0,0,.4);
+      transform:translateY(12px) scale(.98);
+      transition:.25s ease;
+    }
+    .video-modal.active .video-modal-inner{
+      transform:translateY(0) scale(1);
+    }
+    .video-close{
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.14);
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      z-index:5;
+    }
+    .video-modal video{
+      width:100%;
+      display:block;
+      max-height:80vh;
+      background:#000;
     }
 
     /* HR */
@@ -508,7 +640,7 @@
       padding:28px 22px;
       text-align:center;
       transition:.25s ease;
-      min-height:200px;
+      min-height:220px;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -517,7 +649,7 @@
     .hr_card:hover{
       transform:translateY(-6px);
       border-color:rgba(245,193,74,.26);
-      box-shadow:0 18px 34px rgba(0,0,0,.34), 0 0 20px rgba(245,193,74,.08);
+      box-shadow:0 18px 34px rgba(0,0,0,.20), 0 0 20px rgba(245,193,74,.08);
     }
     .hr_number{
       width:76px;
@@ -537,7 +669,7 @@
       margin:0 0 10px;
       font-size:20px;
       font-weight:800;
-      color:#fff;
+      color:var(--white);
     }
     .hr_card p{
       margin:0;
@@ -560,7 +692,7 @@
       margin:0 0 10px;
       font-size:34px;
       font-weight:800;
-      color:#fff;
+      color:var(--white);
     }
     .contact_form_wrap p{
       margin:0 0 24px;
@@ -576,11 +708,11 @@
     .form_group.full{grid-column:1/-1}
     .form_control{
       width:100%;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
+      background:var(--input-bg);
+      border:1px solid var(--input-border);
       border-radius:14px;
       padding:15px 16px;
-      color:#fff;
+      color:var(--text);
       outline:none;
       transition:.24s ease;
       font-family:inherit;
@@ -636,11 +768,30 @@
       word-break:break-word;
     }
 
+    .lets-talk-title{
+      margin:0 0 12px;
+      font-size:18px;
+      font-weight:800;
+      color:var(--yellow);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+    .lets-talk-line{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.8;
+    }
+    .lets-talk-line strong{
+      color:var(--white);
+      font-weight:700;
+    }
+
     /* Footer */
     #footer_section{
       padding:42px 0;
-      border-top:1px solid rgba(255,255,255,.08);
-      background:#0b0b0c;
+      border-top:1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      background:color-mix(in srgb, var(--bg) 92%, black 8%);
     }
     .footer_mail{
       text-align:center;
@@ -649,7 +800,7 @@
     .footer_mail a{
       font-size:28px;
       font-weight:700;
-      color:#fff;
+      color:var(--white);
       transition:.25s ease;
     }
     .footer_mail a:hover{color:var(--yellow)}
@@ -667,9 +818,10 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(255,255,255,.12);
-      color:#c8c8c8;
+      border:1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      color:var(--muted);
       transition:.25s ease;
+      font-size:16px;
     }
     .footer_social a:hover{
       color:#111;
@@ -684,7 +836,6 @@
       margin:0;
     }
 
-    /* Responsive */
     @media (max-width: 1199px){
       .timeline_wrap,
       .services_grid,
@@ -692,12 +843,9 @@
       .counter_wrap{
         grid-template-columns:repeat(2,1fr);
       }
-      .hr_grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-      .contact_grid{
-        grid-template-columns:1fr;
-      }
+      .hr_grid{grid-template-columns:repeat(2,1fr)}
+      .contact_grid{grid-template-columns:1fr}
+      .hero-scroll-gallery{grid-template-columns:repeat(2,1fr)}
     }
 
     @media (max-width: 991px){
@@ -705,6 +853,7 @@
       #hero_section_slider{padding-top:110px}
       .hero_content h1{font-size:44px}
       .video_box{flex-direction:column;align-items:flex-start}
+      .navbar-wrap{justify-content:flex-end}
       .navbar-nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}
     }
 
@@ -717,12 +866,11 @@
       .services_grid,
       .projects_grid,
       .counter_wrap,
-      .hr_grid{
+      .hr_grid,
+      .hero-scroll-gallery{
         grid-template-columns:1fr;
       }
-      .form_grid{
-        grid-template-columns:1fr;
-      }
+      .form_grid{grid-template-columns:1fr}
       .footer_mail a{font-size:22px}
     }
   </style>
@@ -730,7 +878,6 @@
 
 <body>
 
-  <!-- Header -->
   <header id="header_sec">
     <div class="container">
       <div class="row">
@@ -742,24 +889,29 @@
           </div>
         </div>
 
-        <div class="col-9 col-lg-10 d-flex justify-content-end">
-          <nav class="navbar navbar-expand-lg navbar-light p-0">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="#hero_section_slider">HOME</a></li>
-              <li class="nav-item"><a class="nav-link" href="#about_sec">ABOUT</a></li>
-              <li class="nav-item"><a class="nav-link" href="#services_profile">SERVICES</a></li>
-              <li class="nav-item"><a class="nav-link" href="#timeline_sec">TIMELINE</a></li>
-              <li class="nav-item"><a class="nav-link" href="#projects_sec">PROJECTS</a></li>
-              <li class="nav-item"><a class="nav-link" href="#hr_sec">HUMAN RESOURCES</a></li>
-              <li class="nav-item"><a class="nav-link" href="#contact_sec">CONTACT</a></li>
-            </ul>
-          </nav>
+        <div class="col-9 col-lg-10">
+          <div class="navbar-wrap">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#hero_section_slider">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about_sec">ABOUT</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services_profile">SERVICES</a></li>
+                <li class="nav-item"><a class="nav-link" href="#timeline_sec">TIMELINE</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects_sec">PROJECTS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#hr_sec">HUMAN RESOURCES</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact_sec">CONTACT</a></li>
+              </ul>
+            </nav>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark light mode">
+              <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="hero_section_slider">
     <div class="container">
       <div class="hero_content" data-aos="fade-up" data-aos-duration="1000">
@@ -772,12 +924,23 @@
           <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
+
+      <div class="hero-scroll-gallery">
+        <div class="hero-gallery-card" data-aos="fade-up" data-aos-duration="900">
+          <img src="assets/images/about/about-1.png" alt="Engineering Steps hero image 1">
+        </div>
+        <div class="hero-gallery-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+          <img src="assets/images/about/about-2.png" alt="Engineering Steps hero image 2">
+        </div>
+        <div class="hero-gallery-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+          <img src="assets/images/about/about-3.png" alt="Engineering Steps hero image 3">
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- About -->
   <section id="about_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -786,7 +949,7 @@
       <div class="row g-4 align-items-stretch">
         <div class="col-lg-6">
           <div class="about_image_card h-100" data-aos="fade-right" data-aos-duration="1000">
-            <img src="assets/images/about/about-1.png" alt="Engineering Steps about image">
+            <img src="assets/images/about/about-4.png" alt="Engineering Steps about image">
           </div>
         </div>
 
@@ -831,7 +994,6 @@
 
   <div class="section-gap"></div>
 
-  <!-- Timeline -->
   <section id="timeline_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -875,7 +1037,6 @@
 
   <div class="section-gap"></div>
 
-  <!-- Projects -->
   <section id="projects_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -883,7 +1044,6 @@
       <h2 class="section_title" data-aos="fade-up">Engineering Projects</h2>
 
       <div class="projects_grid">
-
         <div class="project_card" data-aos="fade-up">
           <div class="project_img"><img src="assets/images/projects/project1.jpg" alt="Bahr El Baqar Treatment Station"></div>
           <div class="project_badge">Project</div>
@@ -1009,14 +1169,12 @@
           <h3 class="project_title">National Egyptian Railway Industries Co. – Rolling Stock Plant</h3>
           <p class="project_meta"><span>•</span> Scope: Compressed Air System Network</p>
         </div>
-
       </div>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- Video -->
   <section id="video_sec">
     <div class="container">
       <div class="video_box">
@@ -1027,16 +1185,26 @@
           </p>
         </div>
 
-        <a href="assets/images/video/video-1.mp4" class="video_play" data-aos="zoom-in" data-aos-duration="1000">
+        <button class="video_play" id="openVideoModal" data-aos="zoom-in" data-aos-duration="1000" type="button">
           <i class="fa-solid fa-play"></i>
-        </a>
+        </button>
       </div>
     </div>
   </section>
 
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-close" id="closeVideoModal" type="button">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <video id="popupVideo" controls>
+        <source src="assets/images/video/video-1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
   <div class="section-gap"></div>
 
-  <!-- Counter -->
   <section id="counter_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -1063,7 +1231,6 @@
 
   <div class="section-gap"></div>
 
-  <!-- Services -->
   <section id="services_profile" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -1130,7 +1297,6 @@
 
   <div class="section-gap"></div>
 
-  <!-- Human Resources -->
   <section id="hr_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -1179,7 +1345,6 @@
 
   <div class="section-gap"></div>
 
-  <!-- Contact -->
   <section id="contact_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
@@ -1215,10 +1380,9 @@
 
         <div class="contact_info_wrap" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
           <div class="contact_info_box">
-            <h4>Let’s Talk</h4>
-            <p><a href="tel:+201050003626">+201050003626</a></p>
-			<p><a href="tel:+201050003626">+966533703794</a></p>
-            <p><a href="mailto:steps@eng-steps.com">steps@eng-steps.com</a></p>
+            <h4 class="lets-talk-title">Let’s Talk</h4>
+            <p class="lets-talk-line"><strong>Phone:</strong> <a href="tel:+201050003626">+201050003626</a></p>
+            <p class="lets-talk-line"><strong>Email:</strong> <a href="mailto:steps@eng-steps.com">steps@eng-steps.com</a></p>
           </div>
 
           <div class="contact_info_box">
@@ -1235,7 +1399,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer id="footer_section">
     <div class="container">
       <div class="footer_mail">
@@ -1243,11 +1406,11 @@
       </div>
 
       <div class="footer_social">
-        <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://x.com/" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
       </div>
 
       <p class="footer_copy">Copyright 2026 - Engineering Eng-steps</p>
@@ -1262,7 +1425,7 @@
       offset: 60
     });
 
-    // Click heading to highlight
+    // Highlight headings
     (function () {
       const selector = 'h1, h2, h3, h4, .section_title';
       document.addEventListener('click', function (e) {
@@ -1294,12 +1457,56 @@
       const message = document.getElementById('message').value.trim();
 
       const body =
-        "Name: " + name + "%0D%0A" +
-        "Email: " + email + "%0D%0A%0D%0A" +
+        "Name: " + encodeURIComponent(name) + "%0D%0A" +
+        "Email: " + encodeURIComponent(email) + "%0D%0A%0D%0A" +
         "Message:%0D%0A" + encodeURIComponent(message);
 
       const mailtoLink = "mailto:steps@eng-steps.com?subject=" + encodeURIComponent(subject) + "&body=" + body;
       window.location.href = mailtoLink;
+    });
+
+    // Video popup
+    const videoModal = document.getElementById('videoModal');
+    const openVideoModal = document.getElementById('openVideoModal');
+    const closeVideoModal = document.getElementById('closeVideoModal');
+    const popupVideo = document.getElementById('popupVideo');
+
+    openVideoModal.addEventListener('click', function () {
+      videoModal.classList.add('active');
+      popupVideo.play();
+    });
+
+    closeVideoModal.addEventListener('click', function () {
+      videoModal.classList.remove('active');
+      popupVideo.pause();
+      popupVideo.currentTime = 0;
+    });
+
+    videoModal.addEventListener('click', function (e) {
+      if (e.target === videoModal) {
+        videoModal.classList.remove('active');
+        popupVideo.pause();
+        popupVideo.currentTime = 0;
+      }
+    });
+
+    // Dark / Light Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('engineering-steps-theme');
+    if (savedTheme) {
+      html.setAttribute('data-theme', savedTheme);
+      themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    themeToggle.addEventListener('click', function () {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('engineering-steps-theme', next);
+      themeIcon.className = next === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
     });
   </script>
 </body>
