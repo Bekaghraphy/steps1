@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,60 +7,61 @@
   <title>Engineering Steps</title>
 
   <link rel="icon" href="assets/images/favicon/favicon-icon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/aos.css" />
 
   <style>
     :root{
       --bg:#0c0d10;
-      --bg-soft:#13151a;
-      --panel:rgba(255,255,255,.05);
-      --panel-solid:#171a20;
+      --panel:#14171d;
+      --panel-2:rgba(255,255,255,.05);
       --text:#ffffff;
       --muted:rgba(255,255,255,.72);
       --line:rgba(255,255,255,.10);
       --yellow:#f5c14a;
-      --yellow-soft:rgba(245,193,74,.14);
+      --yellow-soft:rgba(245,193,74,.16);
       --shadow:0 14px 40px rgba(0,0,0,.28);
       --radius:20px;
       --hero-overlay:rgba(0,0,0,.58);
       --video-overlay:rgba(0,0,0,.62);
+      --header-bg:rgba(10,10,12,.78);
       --input-bg:rgba(255,255,255,.04);
       --input-border:rgba(255,255,255,.10);
-      --header-bg:rgba(10,10,12,.72);
     }
 
     html[data-theme="light"]{
       --bg:#f5f6f8;
-      --bg-soft:#ffffff;
-      --panel:rgba(255,255,255,.92);
-      --panel-solid:#ffffff;
-      --text:#121212;
-      --muted:rgba(18,18,18,.68);
+      --panel:#ffffff;
+      --panel-2:rgba(255,255,255,.92);
+      --text:#111111;
+      --muted:rgba(17,17,17,.68);
       --line:rgba(0,0,0,.10);
-      --shadow:0 10px 28px rgba(0,0,0,.10);
-      --hero-overlay:rgba(255,255,255,.48);
+      --shadow:0 10px 26px rgba(0,0,0,.10);
+      --hero-overlay:rgba(255,255,255,.50);
       --video-overlay:rgba(255,255,255,.55);
+      --header-bg:rgba(255,255,255,.82);
       --input-bg:#ffffff;
       --input-border:rgba(0,0,0,.10);
-      --header-bg:rgba(255,255,255,.78);
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:'Poppins',sans-serif;
       background:var(--bg);
       color:var(--text);
+      font-family:'Poppins',sans-serif;
       overflow-x:hidden;
       transition:background .25s ease,color .25s ease;
     }
-
+    body.lang-ar{font-family:'Cairo',sans-serif}
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
-    button{font-family:inherit}
+    button,input,textarea{font-family:inherit}
+
     .container{
       width:min(1200px, calc(100% - 32px));
       margin-inline:auto;
@@ -109,7 +110,7 @@
     .section_title{
       margin:0 0 14px;
       font-size:clamp(28px,4vw,42px);
-      line-height:1.12;
+      line-height:1.14;
       font-weight:800;
       color:var(--text);
     }
@@ -117,30 +118,16 @@
     .section_text{
       margin:0;
       color:var(--muted);
-      line-height:1.9;
       font-size:15px;
-    }
-
-    h1,h2,h3,h4,.section_title{
-      transition:transform .22s ease,color .22s ease,text-shadow .22s ease;
-      cursor:pointer;
-    }
-    h1:hover,h2:hover,h3:hover,h4:hover,.section_title:hover{
-      color:var(--yellow);
-      transform:translateY(-2px);
-      text-shadow:0 0 18px rgba(245,193,74,.16);
-    }
-    .heading-selected{
-      color:var(--yellow)!important;
-      text-shadow:0 0 20px rgba(245,193,74,.24)!important;
+      line-height:1.9;
     }
 
     .card{
-      background:var(--panel);
+      background:var(--panel-2);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      backdrop-filter:blur(8px);
+      backdrop-filter:blur(10px);
     }
 
     /* Header */
@@ -167,7 +154,6 @@
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:0;
     }
 
     .site_logo{
@@ -177,17 +163,17 @@
 
     .logo-fallback{
       font-weight:800;
-      letter-spacing:.08em;
       font-size:18px;
-      text-transform:uppercase;
+      letter-spacing:.06em;
       color:var(--text);
+      text-transform:uppercase;
       white-space:nowrap;
     }
 
     .header_right{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
     }
 
     .desktop_nav{
@@ -203,14 +189,11 @@
       color:var(--text);
       font-size:14px;
       font-weight:600;
-      letter-spacing:.04em;
-      transition:.25s ease;
+      transition:.22s ease;
     }
 
     .desktop_nav a:hover,
-    .mobile_nav a:hover{
-      color:var(--yellow);
-    }
+    .mobile_nav a:hover{color:var(--yellow)}
 
     .desktop_nav a::after,
     .mobile_nav a::after{
@@ -221,16 +204,13 @@
       width:0;
       height:2px;
       background:var(--yellow);
-      transition:.25s ease;
+      transition:.22s ease;
     }
 
     .desktop_nav a:hover::after,
-    .mobile_nav a:hover::after{
-      width:100%;
-    }
+    .mobile_nav a:hover::after{width:100%}
 
-    .theme-toggle,
-    .menu-toggle{
+    .tool-btn{
       width:44px;
       height:44px;
       border:none;
@@ -238,7 +218,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:var(--panel);
+      background:var(--panel-2);
       border:1px solid var(--line);
       color:var(--text);
       cursor:pointer;
@@ -247,11 +227,19 @@
       flex-shrink:0;
     }
 
-    .theme-toggle:hover,
-    .menu-toggle:hover{
+    .tool-btn:hover{
       color:var(--yellow);
+      border-color:rgba(245,193,74,.30);
       transform:translateY(-2px);
-      border-color:rgba(245,193,74,.32);
+    }
+
+    .lang-btn{
+      width:auto;
+      min-width:52px;
+      border-radius:999px;
+      padding:0 14px;
+      font-weight:700;
+      font-size:13px;
     }
 
     .menu-toggle{display:none}
@@ -261,7 +249,6 @@
       top:79px;
       left:0;
       width:100%;
-      z-index:999;
       background:var(--header-bg);
       backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
@@ -269,6 +256,7 @@
       max-height:0;
       overflow:hidden;
       transition:max-height .28s ease,padding .28s ease;
+      z-index:999;
     }
 
     .mobile_menu.open{
@@ -286,32 +274,30 @@
     #hero_section_slider{
       min-height:100vh;
       padding:140px 0 80px;
+      display:flex;
+      align-items:center;
       background:
         linear-gradient(var(--hero-overlay), var(--hero-overlay)),
         url("assets/images/hero/hero-1.jpg") center/cover no-repeat;
-      display:flex;
-      align-items:center;
     }
 
-    .hero_layout{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:28px;
-      align-items:center;
+    .hero_content{
+      max-width:780px;
     }
 
     .hero_content h1{
       margin:0 0 18px;
-      font-size:clamp(34px,6vw,60px);
+      font-size:clamp(34px,6vw,62px);
       line-height:1.04;
       font-weight:800;
       color:#fff;
     }
 
     .hero_content .bold_txt{color:var(--yellow)}
+
     .hero_content p{
       margin:0 0 28px;
-      max-width:640px;
+      max-width:700px;
       color:var(--muted);
       font-size:16px;
       line-height:1.9;
@@ -326,7 +312,7 @@
       background:var(--yellow);
       color:#111;
       font-weight:800;
-      transition:.24s ease;
+      transition:.22s ease;
     }
 
     .hero_btn:hover{
@@ -334,36 +320,48 @@
       box-shadow:0 12px 24px rgba(245,193,74,.24);
     }
 
-    .hero_gallery{
+    /* Gallery section */
+    .gallery_grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
     }
 
-    .hero_gallery_card{
-      padding:10px;
+    .gallery_card{
+      position:relative;
       overflow:hidden;
+      padding:10px;
     }
 
-    .hero_gallery_card.large{
-      grid-column:span 2;
-    }
-
-    .hero_gallery_card img{
+    .gallery_card img{
       width:100%;
-      height:220px;
+      height:270px;
       object-fit:cover;
       border-radius:16px;
-      transition:transform .4s ease, filter .4s ease;
+      transition:transform .35s ease,filter .35s ease;
     }
 
-    .hero_gallery_card.large img{
-      height:260px;
-    }
-
-    .hero_gallery_card:hover img{
+    .gallery_card:hover img{
       transform:scale(1.05);
-      filter:brightness(1.05);
+      filter:brightness(1.04);
+    }
+
+    .gallery_number{
+      position:absolute;
+      top:22px;
+      left:22px;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:#111;
+      font-weight:800;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 20px rgba(245,193,74,.22);
+      z-index:2;
     }
 
     /* About */
@@ -371,7 +369,6 @@
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:22px;
-      align-items:stretch;
       margin-bottom:22px;
     }
 
@@ -419,8 +416,8 @@
     .feature_card p{
       margin:0;
       color:var(--muted);
-      line-height:1.85;
       font-size:14px;
+      line-height:1.85;
     }
 
     /* Timeline */
@@ -464,8 +461,8 @@
     .timeline_card p{
       margin:0;
       color:#444;
-      line-height:1.8;
       font-size:14px;
+      line-height:1.8;
     }
 
     /* Projects */
@@ -476,33 +473,33 @@
     }
 
     .project_card{
-      padding:16px;
       position:relative;
       overflow:hidden;
+      padding:16px;
       cursor:pointer;
-      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+      transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease;
     }
 
     .project_card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(245,193,74,.13), transparent 45%, rgba(245,193,74,.05));
+      background:linear-gradient(135deg, rgba(245,193,74,.12), transparent 45%, rgba(245,193,74,.05));
       opacity:0;
-      transition:.28s ease;
+      transition:.24s ease;
       pointer-events:none;
     }
 
     .project_card:hover{
       transform:translateY(-8px) scale(1.01);
-      border-color:rgba(245,193,74,.32);
+      border-color:rgba(245,193,74,.30);
       box-shadow:0 20px 42px rgba(0,0,0,.28),0 0 22px rgba(245,193,74,.08);
     }
 
     .project_card:hover::before{opacity:1}
 
     .project_card.active-project{
-      border-color:rgba(245,193,74,.48);
+      border-color:rgba(245,193,74,.44);
       box-shadow:0 0 0 1px rgba(245,193,74,.24),0 18px 34px rgba(0,0,0,.26);
     }
 
@@ -520,7 +517,7 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      transition:transform .35s ease, filter .35s ease;
+      transition:transform .35s ease,filter .35s ease;
     }
 
     .project_card:hover .project_img img{
@@ -591,9 +588,9 @@
     .video_text p{
       margin:0;
       max-width:620px;
-      color:rgba(255,255,255,.8);
-      line-height:1.9;
+      color:rgba(255,255,255,.82);
       font-size:15px;
+      line-height:1.9;
     }
 
     .video_play{
@@ -608,8 +605,7 @@
       align-items:center;
       justify-content:center;
       cursor:pointer;
-      transition:.24s ease;
-      flex-shrink:0;
+      transition:.22s ease;
     }
 
     .video_play:hover{
@@ -710,13 +706,12 @@
 
     .service_card{
       padding:24px;
-      transition:.25s ease;
+      transition:.22s ease;
     }
 
     .service_card:hover{
       transform:translateY(-6px);
       border-color:rgba(245,193,74,.28);
-      box-shadow:0 18px 34px rgba(0,0,0,.26),0 0 18px rgba(245,193,74,.08);
     }
 
     .service_icon{
@@ -758,13 +753,12 @@
       padding:28px 22px;
       min-height:220px;
       text-align:center;
-      transition:.25s ease;
+      transition:.22s ease;
     }
 
     .hr_card:hover{
       transform:translateY(-6px);
       border-color:rgba(245,193,74,.28);
-      box-shadow:0 18px 34px rgba(0,0,0,.26),0 0 18px rgba(245,193,74,.08);
     }
 
     .hr_number{
@@ -792,8 +786,8 @@
     .hr_card p{
       margin:0;
       color:var(--muted);
-      line-height:1.85;
       font-size:14px;
+      line-height:1.85;
     }
 
     /* Contact */
@@ -818,8 +812,8 @@
     .contact_form_wrap p{
       margin:0 0 24px;
       color:var(--muted);
-      line-height:1.9;
       font-size:15px;
+      line-height:1.9;
     }
 
     .form_grid{
@@ -840,7 +834,6 @@
       outline:none;
       transition:.22s ease;
       font-size:14px;
-      font-family:inherit;
     }
 
     .form_control:focus{
@@ -894,8 +887,8 @@
     .contact_info_box a{
       margin:0;
       color:var(--muted);
-      line-height:1.85;
       font-size:15px;
+      line-height:1.85;
       word-break:break-word;
     }
 
@@ -908,7 +901,7 @@
     #footer_section{
       padding:42px 0;
       border-top:1px solid var(--line);
-      background:color-mix(in srgb, var(--bg) 92%, black 8%);
+      background:rgba(0,0,0,.08);
     }
 
     .footer_mail{
@@ -962,6 +955,7 @@
 
     /* Responsive */
     @media (max-width: 1100px){
+      .gallery_grid,
       .projects_grid,
       .services_grid,
       .hr_grid,
@@ -970,19 +964,15 @@
         grid-template-columns:repeat(2,1fr);
       }
 
-      .contact_grid,
       .about_grid,
-      .hero_layout{
+      .contact_grid{
         grid-template-columns:1fr;
       }
-
-      .hero_content{max-width:none}
     }
 
     @media (max-width: 900px){
       .desktop_nav{display:none}
       .menu-toggle{display:flex}
-      #header_sec{position:sticky}
       #hero_section_slider{
         min-height:auto;
         padding:110px 0 70px;
@@ -997,35 +987,26 @@
       .section-block{padding:74px 0}
       .section-gap{height:52px}
 
+      .gallery_grid,
       .projects_grid,
       .services_grid,
       .hr_grid,
       .counter_wrap,
       .timeline_wrap,
-      .about_features,
-      .hero_gallery{
+      .about_features{
         grid-template-columns:1fr;
-      }
-
-      .hero_gallery_card.large{
-        grid-column:auto;
-      }
-
-      .hero_gallery_card img,
-      .hero_gallery_card.large img{
-        height:220px;
       }
 
       .form_grid{
         grid-template-columns:1fr;
       }
 
-      .footer_mail a{
-        font-size:22px;
-      }
-
       .about_image img{
         min-height:300px;
+      }
+
+      .footer_mail a{
+        font-size:22px;
       }
     }
   </style>
@@ -1043,20 +1024,21 @@
 
         <div class="header_right">
           <nav class="desktop_nav">
-            <a href="#hero_section_slider">HOME</a>
-            <a href="#about_sec">ABOUT</a>
-            <a href="#services_profile">SERVICES</a>
-            <a href="#timeline_sec">TIMELINE</a>
-            <a href="#projects_sec">PROJECTS</a>
-            <a href="#hr_sec">HUMAN RESOURCES</a>
-            <a href="#contact_sec">CONTACT</a>
+            <a href="#hero_section_slider" data-en="HOME" data-ar="الرئيسية">HOME</a>
+            <a href="#gallery_sec" data-en="GALLERY" data-ar="الجاليري">GALLERY</a>
+            <a href="#about_sec" data-en="ABOUT" data-ar="من نحن">ABOUT</a>
+            <a href="#services_profile" data-en="SERVICES" data-ar="الخدمات">SERVICES</a>
+            <a href="#timeline_sec" data-en="TIMELINE" data-ar="الخط الزمني">TIMELINE</a>
+            <a href="#projects_sec" data-en="PROJECTS" data-ar="المشاريع">PROJECTS</a>
+            <a href="#hr_sec" data-en="HUMAN RESOURCES" data-ar="الموارد البشرية">HUMAN RESOURCES</a>
+            <a href="#contact_sec" data-en="CONTACT" data-ar="تواصل معنا">CONTACT</a>
           </nav>
 
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <button class="tool-btn lang-btn" id="langToggle">AR</button>
+          <button class="tool-btn" id="themeToggle" aria-label="Toggle theme">
             <i class="fa-solid fa-moon" id="themeIcon"></i>
           </button>
-
-          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <button class="tool-btn menu-toggle" id="menuToggle" aria-label="Open menu">
             <i class="fa-solid fa-bars"></i>
           </button>
         </div>
@@ -1065,41 +1047,56 @@
 
     <div class="mobile_menu" id="mobileMenu">
       <nav class="mobile_nav">
-        <a href="#hero_section_slider">HOME</a>
-        <a href="#about_sec">ABOUT</a>
-        <a href="#services_profile">SERVICES</a>
-        <a href="#timeline_sec">TIMELINE</a>
-        <a href="#projects_sec">PROJECTS</a>
-        <a href="#hr_sec">HUMAN RESOURCES</a>
-        <a href="#contact_sec">CONTACT</a>
+        <a href="#hero_section_slider" data-en="HOME" data-ar="الرئيسية">HOME</a>
+        <a href="#gallery_sec" data-en="GALLERY" data-ar="الجاليري">GALLERY</a>
+        <a href="#about_sec" data-en="ABOUT" data-ar="من نحن">ABOUT</a>
+        <a href="#services_profile" data-en="SERVICES" data-ar="الخدمات">SERVICES</a>
+        <a href="#timeline_sec" data-en="TIMELINE" data-ar="الخط الزمني">TIMELINE</a>
+        <a href="#projects_sec" data-en="PROJECTS" data-ar="المشاريع">PROJECTS</a>
+        <a href="#hr_sec" data-en="HUMAN RESOURCES" data-ar="الموارد البشرية">HUMAN RESOURCES</a>
+        <a href="#contact_sec" data-en="CONTACT" data-ar="تواصل معنا">CONTACT</a>
       </nav>
     </div>
   </header>
 
   <section id="hero_section_slider">
     <div class="container">
-      <div class="hero_layout">
-        <div class="hero_content" data-aos="fade-up" data-aos-duration="900">
-          <h1>WE ARE <span class="bold_txt">ENGINEERING STEPS</span></h1>
-          <p>
-            Smart engineering solutions for electromechanical works, project delivery, and industrial construction — built on experience, quality, and commitment in every engineering step.
-          </p>
-          <a href="#contact_sec" class="hero_btn">
-            Have a project?
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+      <div class="hero_content" data-aos="fade-up" data-aos-duration="900">
+        <h1 data-en="WE ARE <span class='bold_txt'>ENGINEERING STEPS</span>" data-ar="نحن <span class='bold_txt'>Engineering Steps</span>">WE ARE <span class="bold_txt">ENGINEERING STEPS</span></h1>
+        <p data-en="Smart engineering solutions for electromechanical works, project delivery, and industrial construction — built on experience, quality, and commitment in every engineering step."
+           data-ar="حلول هندسية ذكية للأعمال الكهروميكانيكية وتنفيذ المشاريع والإنشاءات الصناعية، مبنية على الخبرة والجودة والالتزام في كل خطوة هندسية.">
+          Smart engineering solutions for electromechanical works, project delivery, and industrial construction — built on experience, quality, and commitment in every engineering step.
+        </p>
+        <a href="#contact_sec" class="hero_btn">
+          <span data-en="Have a project?" data-ar="هل لديك مشروع؟">Have a project?</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-gap"></div>
+
+  <section id="gallery_sec" class="section-block">
+    <div class="container">
+      <div class="section-anim-line" data-aos="fade-right"></div>
+      <p class="orange_box" data-en="GALLERY" data-ar="الجاليري">GALLERY</p>
+      <h2 class="section_title" data-en="Engineering Gallery" data-ar="معرض Engineering Steps">Engineering Gallery</h2>
+
+      <div class="gallery_grid">
+        <div class="gallery_card card" data-aos="fade-up" data-aos-duration="900">
+          <div class="gallery_number">1</div>
+          <img src="assets/images/about/about-1.png" alt="Gallery image 1">
         </div>
 
-        <div class="hero_gallery">
-          <div class="hero_gallery_card card large" data-aos="fade-up" data-aos-duration="900">
-            <img src="assets/images/about/about-1.png" alt="Engineering Steps hero image 1">
-          </div>
-          <div class="hero_gallery_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
-            <img src="assets/images/about/about-2.png" alt="Engineering Steps hero image 2">
-          </div>
-          <div class="hero_gallery_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
-            <img src="assets/images/about/about-3.png" alt="Engineering Steps hero image 3">
-          </div>
+        <div class="gallery_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+          <div class="gallery_number">2</div>
+          <img src="assets/images/about/about-2.png" alt="Gallery image 2">
+        </div>
+
+        <div class="gallery_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+          <div class="gallery_number">3</div>
+          <img src="assets/images/about/about-3.png" alt="Gallery image 3">
         </div>
       </div>
     </div>
@@ -1110,7 +1107,7 @@
   <section id="about_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">ABOUT</p>
+      <p class="orange_box" data-en="ABOUT" data-ar="من نحن">ABOUT</p>
 
       <div class="about_grid">
         <div class="about_image card" data-aos="fade-right" data-aos-duration="900">
@@ -1118,8 +1115,9 @@
         </div>
 
         <div class="about_text_card card" data-aos="fade-left" data-aos-duration="900">
-          <h2 class="section_title">Engineering Steps Introduction</h2>
-          <p>
+          <h2 class="section_title" data-en="Engineering Steps Introduction" data-ar="نبذة عن Engineering Steps">Engineering Steps Introduction</h2>
+          <p data-en="Engineering STEPS is built on solid engineering expertise in electromechanical contracting and construction. We operate as an integrated engineering partner, committed to delivering projects with quality, safety, and efficiency. Our team combines field experience, technical leadership, and execution discipline to provide comprehensive solutions tailored to each project’s needs."
+             data-ar="تقوم Engineering Steps على خبرة هندسية قوية في مجالات المقاولات والأعمال الكهروميكانيكية والإنشاءات. نعمل كشريك هندسي متكامل يركز على تنفيذ المشاريع بجودة وكفاءة وسلامة عالية، مع تقديم حلول شاملة تناسب احتياجات كل مشروع.">
             Engineering STEPS is built on solid engineering expertise in electromechanical contracting and construction. We operate as an integrated engineering partner, committed to delivering projects with quality, safety, and efficiency. Our team combines field experience, technical leadership, and execution discipline to provide comprehensive solutions tailored to each project’s needs.
           </p>
         </div>
@@ -1127,18 +1125,27 @@
 
       <div class="about_features">
         <div class="feature_card card" data-aos="fade-up" data-aos-duration="900">
-          <h3>Engineering Perspective</h3>
-          <p>A forward-looking engineering vision that drives every project we undertake, shaping smarter solutions and a stronger future.</p>
+          <h3 data-en="Engineering Perspective" data-ar="الرؤية الهندسية">Engineering Perspective</h3>
+          <p data-en="A forward-looking engineering vision that drives every project we undertake, shaping smarter solutions and a stronger future."
+             data-ar="رؤية هندسية مستقبلية تقود كل مشروع ننفذه، وتساعد على بناء حلول أكثر ذكاءً ومستقبل أقوى.">
+            A forward-looking engineering vision that drives every project we undertake, shaping smarter solutions and a stronger future.
+          </p>
         </div>
 
         <div class="feature_card card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
-          <h3>Engineering Vision</h3>
-          <p>To build a strong electromechanical presence locally and beyond through consistent quality, client trust, and sustainable engineering growth.</p>
+          <h3 data-en="Engineering Vision" data-ar="الرؤية">Engineering Vision</h3>
+          <p data-en="To build a strong electromechanical presence locally and beyond through consistent quality, client trust, and sustainable engineering growth."
+             data-ar="بناء حضور قوي في مجال الأعمال الكهروميكانيكية محليًا وإقليميًا من خلال الجودة المستمرة وثقة العملاء والنمو الهندسي المستدام.">
+            To build a strong electromechanical presence locally and beyond through consistent quality, client trust, and sustainable engineering growth.
+          </p>
         </div>
 
         <div class="feature_card card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
-          <h3>Engineering Commitment</h3>
-          <p>At Engineering STEPS, we deliver reliable and high-quality engineering solutions through precision, innovation, and client focus.</p>
+          <h3 data-en="Engineering Commitment" data-ar="التزامنا">Engineering Commitment</h3>
+          <p data-en="At Engineering STEPS, we deliver reliable and high-quality engineering solutions through precision, innovation, and client focus."
+             data-ar="في Engineering Steps نقدم حلولًا هندسية موثوقة وعالية الجودة من خلال الدقة والابتكار والتركيز على احتياجات العميل.">
+            At Engineering STEPS, we deliver reliable and high-quality engineering solutions through precision, innovation, and client focus.
+          </p>
         </div>
       </div>
     </div>
@@ -1149,38 +1156,50 @@
   <section id="timeline_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">TIMELINE</p>
+      <p class="orange_box" data-en="TIMELINE" data-ar="الخط الزمني">TIMELINE</p>
 
       <div class="timeline_wrap">
         <div class="timeline_item" data-aos="fade-up" data-aos-duration="900">
           <div class="timeline_year">2012</div>
           <div class="timeline_card">
-            <h3>The Beginning</h3>
-            <p>The company began its operations in electromechanical contracting with a skilled team built through successful project delivery.</p>
+            <h3 data-en="The Beginning" data-ar="البداية">The Beginning</h3>
+            <p data-en="The company began its operations in electromechanical contracting with a skilled team built through successful project delivery."
+               data-ar="بدأت الشركة أعمالها في مجال المقاولات الكهروميكانيكية من خلال فريق متخصص يمتلك خبرة عملية في تنفيذ المشاريع بنجاح.">
+              The company began its operations in electromechanical contracting with a skilled team built through successful project delivery.
+            </p>
           </div>
         </div>
 
         <div class="timeline_item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
           <div class="timeline_year">2017</div>
           <div class="timeline_card">
-            <h3>Expansion of Expertise</h3>
-            <p>Major projects strengthened the company’s market presence and showcased the team’s engineering capability and execution quality.</p>
+            <h3 data-en="Expansion of Expertise" data-ar="التوسع في الخبرة">Expansion of Expertise</h3>
+            <p data-en="Major projects strengthened the company’s market presence and showcased the team’s engineering capability and execution quality."
+               data-ar="ساهمت المشاريع الكبرى في تعزيز وجود الشركة في السوق وإظهار كفاءة الفريق وجودة التنفيذ.">
+              Major projects strengthened the company’s market presence and showcased the team’s engineering capability and execution quality.
+            </p>
           </div>
         </div>
 
         <div class="timeline_item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
           <div class="timeline_year">2022</div>
           <div class="timeline_card">
-            <h3>Strategic Alignment</h3>
-            <p>Previous achievements were consolidated into one identity — Engineering STEPS — positioned as a strong engineering entity.</p>
+            <h3 data-en="Strategic Alignment" data-ar="التوحيد الاستراتيجي">Strategic Alignment</h3>
+            <p data-en="Previous achievements were consolidated into one identity — Engineering STEPS — positioned as a strong engineering entity."
+               data-ar="تم توحيد الإنجازات السابقة تحت هوية واحدة وهي Engineering Steps لتقديم كيان هندسي أكثر قوة وتنظيمًا.">
+              Previous achievements were consolidated into one identity — Engineering STEPS — positioned as a strong engineering entity.
+            </p>
           </div>
         </div>
 
         <div class="timeline_item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="900">
           <div class="timeline_year">2025</div>
           <div class="timeline_card">
-            <h3>Launch in Saudi Arabia</h3>
-            <p>Following local success, the company expanded regionally by establishing its Saudi branch in Riyadh.</p>
+            <h3 data-en="Launch in Saudi Arabia" data-ar="الانطلاق في السعودية">Launch in Saudi Arabia</h3>
+            <p data-en="Following local success, the company expanded regionally by establishing its Saudi branch in Riyadh."
+               data-ar="بعد النجاح في السوق المحلي، توسعت الشركة إقليميًا بافتتاح فرعها في المملكة العربية السعودية بمدينة الرياض.">
+              Following local success, the company expanded regionally by establishing its Saudi branch in Riyadh.
+            </p>
           </div>
         </div>
       </div>
@@ -1192,135 +1211,26 @@
   <section id="projects_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">PROJECTS</p>
-      <h2 class="section_title" data-aos="fade-up">Engineering Projects</h2>
+      <p class="orange_box" data-en="PROJECTS" data-ar="المشاريع">PROJECTS</p>
+      <h2 class="section_title" data-en="Engineering Projects" data-ar="مشاريع Engineering Steps">Engineering Projects</h2>
 
       <div class="projects_grid">
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project1.jpg" alt="Bahr El Baqar Treatment Station"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Bahr El Baqar Treatment Station</h3>
-          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
-          <p class="project_meta"><span>•</span> Scope: HVAC</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
-          <div class="project_img"><img src="assets/images/projects/project2.jpg" alt="Body Line Cooling Upgrade Project – General Motors"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Body Line Cooling Upgrade Project – General Motors</h3>
-          <p class="project_meta"><span>•</span> Client: General Motors</p>
-          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project_img"><img src="assets/images/projects/project3.jpg" alt="Konouz El Galala Showroom (1,2)"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Konouz El Galala Showroom (1,2)</h3>
-          <p class="project_meta"><span>•</span> Client: Military Works Department</p>
-          <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project4.jpg" alt="Factory Work Environment Quality Improvement – Eastern Company"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Factory Work Environment Quality Improvement – Eastern Company</h3>
-          <p class="project_meta"><span>•</span> Client: Eastern Company</p>
-          <p class="project_meta"><span>•</span> Scope: HVAC</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
-          <div class="project_img"><img src="assets/images/projects/project5.jpg" alt="Mastercard VIP Lounge – Cairo Airport"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Mastercard VIP Lounge – Cairo Airport</h3>
-          <p class="project_meta"><span>•</span> Client: Mastercard</p>
-          <p class="project_meta"><span>•</span> Scope: MEP</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project_img"><img src="assets/images/projects/project6.jpg" alt="Zafaran Palace – Ain Shams University"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Zafaran Palace – Ain Shams University</h3>
-          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
-          <p class="project_meta"><span>•</span> Scope: VRV Systems</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project7.jpg" alt="Residential District Firefighting Installation – New Administrative Capital"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Residential District Firefighting Installation – New Administrative Capital</h3>
-          <p class="project_meta"><span>•</span> Client: ORASCOM Construction</p>
-          <p class="project_meta"><span>•</span> Scope: Firefighting Systems</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
-          <div class="project_img"><img src="assets/images/projects/project8.jpg" alt="Senators Building – New Administrative Capital"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Senators Building – New Administrative Capital</h3>
-          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
-          <p class="project_meta"><span>•</span> Scope: HVAC</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project_img"><img src="assets/images/projects/project9.jpg" alt="Adly Mansour Mall – Plumbing System Installation"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Adly Mansour Mall – Plumbing System Installation</h3>
-          <p class="project_meta"><span>•</span> Client: Innovate Company</p>
-          <p class="project_meta"><span>•</span> Scope: Plumbing Systems</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project10.jpg" alt="Boiler System Upgrade Project – Dakahlia Slaughterhouse"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Boiler System Upgrade Project – Dakahlia Slaughterhouse</h3>
-          <p class="project_meta"><span>•</span> Client: Dakahlia Slaughterhouse</p>
-          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
-          <div class="project_img"><img src="assets/images/projects/project11.jpg" alt="Four Seasons Villas – MEP Systems Installation"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Four Seasons Villas – MEP Systems Installation</h3>
-          <p class="project_meta"><span>•</span> Client: SQUARE Construction Firm</p>
-          <p class="project_meta"><span>•</span> Scope: MEP</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project_img"><img src="assets/images/projects/project12.jpg" alt="Fire Safety System Installation Project – Verdi Foods (Investment Zone)"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Fire Safety System Installation Project – Verdi Foods (Investment Zone)</h3>
-          <p class="project_meta"><span>•</span> Client: Verdi Foods</p>
-          <p class="project_meta"><span>•</span> Scope: MEP</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project13.jpg" alt="Information Technology Innovation Center – VRV System Installation"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Information Technology Innovation Center – VRV System Installation</h3>
-          <p class="project_meta"><span>•</span> Client: Arab Contractors</p>
-          <p class="project_meta"><span>•</span> Scope: HVAC</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="40">
-          <div class="project_img"><img src="assets/images/projects/project14.jpg" alt="ORION Food Industries"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">ORION Food Industries</h3>
-          <p class="project_meta"><span>•</span> Client: ORION Food Industries</p>
-          <p class="project_meta"><span>•</span> Scope: Mechanical Installation</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up" data-aos-delay="80">
-          <div class="project_img"><img src="assets/images/projects/project15.jpg" alt="Bahteem Hospital Renovation"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">Bahteem Hospital Renovation</h3>
-          <p class="project_meta"><span>•</span> Scope: Fire Protection Upgrade</p>
-        </div>
-
-        <div class="project_card card" data-aos="fade-up">
-          <div class="project_img"><img src="assets/images/projects/project16.jpg" alt="National Egyptian Railway Industries Co. – Rolling Stock Plant"></div>
-          <div class="project_badge">Project</div>
-          <h3 class="project_title">National Egyptian Railway Industries Co. – Rolling Stock Plant</h3>
-          <p class="project_meta"><span>•</span> Scope: Compressed Air System Network</p>
-        </div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project1.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Bahr El Baqar Treatment Station</h3><p class="project_meta"><span>•</span> Client: Arab Contractors</p><p class="project_meta"><span>•</span> Scope: HVAC</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project2.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Body Line Cooling Upgrade Project – General Motors</h3><p class="project_meta"><span>•</span> Client: General Motors</p><p class="project_meta"><span>•</span> Scope: Mechanical Installation</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project3.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Konouz El Galala Showroom (1,2)</h3><p class="project_meta"><span>•</span> Client: Military Works Department</p><p class="project_meta"><span>•</span> Scope: VRV Systems</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project4.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Factory Work Environment Quality Improvement – Eastern Company</h3><p class="project_meta"><span>•</span> Client: Eastern Company</p><p class="project_meta"><span>•</span> Scope: HVAC</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project5.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Mastercard VIP Lounge – Cairo Airport</h3><p class="project_meta"><span>•</span> Client: Mastercard</p><p class="project_meta"><span>•</span> Scope: MEP</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project6.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Zafaran Palace – Ain Shams University</h3><p class="project_meta"><span>•</span> Client: Arab Contractors</p><p class="project_meta"><span>•</span> Scope: VRV Systems</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project7.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Residential District Firefighting Installation – New Administrative Capital</h3><p class="project_meta"><span>•</span> Client: ORASCOM Construction</p><p class="project_meta"><span>•</span> Scope: Firefighting Systems</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project8.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Senators Building – New Administrative Capital</h3><p class="project_meta"><span>•</span> Client: Arab Contractors</p><p class="project_meta"><span>•</span> Scope: HVAC</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project9.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Adly Mansour Mall – Plumbing System Installation</h3><p class="project_meta"><span>•</span> Client: Innovate Company</p><p class="project_meta"><span>•</span> Scope: Plumbing Systems</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project10.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Boiler System Upgrade Project – Dakahlia Slaughterhouse</h3><p class="project_meta"><span>•</span> Client: Dakahlia Slaughterhouse</p><p class="project_meta"><span>•</span> Scope: Mechanical Installation</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project11.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Four Seasons Villas – MEP Systems Installation</h3><p class="project_meta"><span>•</span> Client: SQUARE Construction Firm</p><p class="project_meta"><span>•</span> Scope: MEP</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project12.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Fire Safety System Installation Project – Verdi Foods (Investment Zone)</h3><p class="project_meta"><span>•</span> Client: Verdi Foods</p><p class="project_meta"><span>•</span> Scope: MEP</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project13.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Information Technology Innovation Center – VRV System Installation</h3><p class="project_meta"><span>•</span> Client: Arab Contractors</p><p class="project_meta"><span>•</span> Scope: HVAC</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project14.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">ORION Food Industries</h3><p class="project_meta"><span>•</span> Client: ORION Food Industries</p><p class="project_meta"><span>•</span> Scope: Mechanical Installation</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project15.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">Bahteem Hospital Renovation</h3><p class="project_meta"><span>•</span> Scope: Fire Protection Upgrade</p></div>
+        <div class="project_card card"><div class="project_img"><img src="assets/images/projects/project16.jpg" alt=""></div><div class="project_badge">Project</div><h3 class="project_title">National Egyptian Railway Industries Co. – Rolling Stock Plant</h3><p class="project_meta"><span>•</span> Scope: Compressed Air System Network</p></div>
       </div>
     </div>
   </section>
@@ -1331,8 +1241,12 @@
     <div class="container">
       <div class="video_box">
         <div class="video_text" data-aos="fade-right" data-aos-duration="900">
-          <h3>Engineering Solutions That Power Progress & Protect Every Project</h3>
-          <p>
+          <h3 data-en="Engineering Solutions That Power Progress & Protect Every Project"
+              data-ar="حلول هندسية تدعم التقدم وتحمي كل مشروع">
+            Engineering Solutions That Power Progress & Protect Every Project
+          </h3>
+          <p data-en="From HVAC and MEP works to fire fighting systems and industrial engineering installations, Engineering STEPS delivers practical solutions built for performance and long-term value."
+             data-ar="من أعمال التكييف والـ MEP إلى أنظمة مكافحة الحريق والتركيبات الصناعية، تقدم Engineering Steps حلولًا عملية مصممة للأداء والقيمة طويلة المدى.">
             From HVAC and MEP works to fire fighting systems and industrial engineering installations, Engineering STEPS delivers practical solutions built for performance and long-term value.
           </p>
         </div>
@@ -1361,21 +1275,21 @@
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
       <div class="counter_wrap">
-        <div class="counter_item card" data-aos="fade-up">
+        <div class="counter_item card">
           <h3>+100</h3>
-          <p>Project Completed</p>
+          <p data-en="Project Completed" data-ar="مشروع تم إنجازه">Project Completed</p>
         </div>
-        <div class="counter_item card" data-aos="fade-up" data-aos-delay="100">
+        <div class="counter_item card">
           <h3>+12</h3>
-          <p>Years of Experience</p>
+          <p data-en="Years of Experience" data-ar="سنوات الخبرة">Years of Experience</p>
         </div>
-        <div class="counter_item card" data-aos="fade-up" data-aos-delay="200">
+        <div class="counter_item card">
           <h3>37</h3>
-          <p>Satisfied Clients</p>
+          <p data-en="Satisfied Clients" data-ar="عميل راضٍ">Satisfied Clients</p>
         </div>
-        <div class="counter_item card" data-aos="fade-up" data-aos-delay="300">
+        <div class="counter_item card">
           <h3>+100</h3>
-          <p>Engineering Professionals</p>
+          <p data-en="Engineering Professionals" data-ar="كوادر هندسية">Engineering Professionals</p>
         </div>
       </div>
     </div>
@@ -1386,63 +1300,19 @@
   <section id="services_profile" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">SERVICES</p>
-      <h2 class="section_title" data-aos="fade-up">What We Deliver</h2>
+      <p class="orange_box" data-en="SERVICES" data-ar="الخدمات">SERVICES</p>
+      <h2 class="section_title" data-en="What We Deliver" data-ar="ما الذي نقدمه">What We Deliver</h2>
 
       <div class="services_grid">
-        <div class="service_card card" data-aos="fade-up">
-          <div class="service_icon"><i class="fa-solid fa-pen-ruler"></i></div>
-          <h4>Fit Out</h4>
-          <p>Exceptional finishing work with careful detailing, high-quality execution, and a clean final handover.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
-          <div class="service_icon"><i class="fa-solid fa-fan"></i></div>
-          <h4>HVAC</h4>
-          <p>Supply and installation of HVAC systems including chillers, ducts, ventilation, hoods, and extraction systems.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service_icon"><i class="fa-solid fa-faucet-drip"></i></div>
-          <h4>Plumbing Systems</h4>
-          <p>Complete plumbing stations, pumps, tanks, and integrated system support for major engineering projects.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up">
-          <div class="service_icon"><i class="fa-solid fa-building-circle-check"></i></div>
-          <h4>Facility Management</h4>
-          <p>Proactive maintenance and responsive support that keep facilities efficient, functional, and safe.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
-          <div class="service_icon"><i class="fa-solid fa-fire-extinguisher"></i></div>
-          <h4>Fire Fighting Systems</h4>
-          <p>Up-to-date fire fighting systems designed in line with international regulations and project safety requirements.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service_icon"><i class="fa-solid fa-wind"></i></div>
-          <h4>Compressed Air Systems</h4>
-          <p>Efficient compressed air networks with dependable engineering installation and after-sales support.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up">
-          <div class="service_icon"><i class="fa-solid fa-network-wired"></i></div>
-          <h4>Low Current Systems</h4>
-          <p>Engineering for fire alarms, CCTV, access control, telecom networks, and structured cabling solutions.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="50">
-          <div class="service_icon"><i class="fa-solid fa-gears"></i></div>
-          <h4>Mechanical Installation</h4>
-          <p>Mechanical engineering solutions aligned with demanding factory and production environments.</p>
-        </div>
-
-        <div class="service_card card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service_icon"><i class="fa-solid fa-diagram-project"></i></div>
-          <h4>Project Management</h4>
-          <p>Full project control including scheduling, coordination, quality follow-up, and delivery management.</p>
-        </div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-pen-ruler"></i></div><h4>Fit Out</h4><p data-en="Exceptional finishing work with careful detailing, high-quality execution, and a clean final handover." data-ar="أعمال تشطيب متميزة مع دقة في التفاصيل وجودة تنفيذ وتسليم نهائي احترافي.">Exceptional finishing work with careful detailing, high-quality execution, and a clean final handover.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-fan"></i></div><h4>HVAC</h4><p data-en="Supply and installation of HVAC systems including chillers, ducts, ventilation, hoods, and extraction systems." data-ar="توريد وتركيب أنظمة التكييف والتهوية بما يشمل التشيلرات والدكتات والشفاطات وأنظمة السحب.">Supply and installation of HVAC systems including chillers, ducts, ventilation, hoods, and extraction systems.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-faucet-drip"></i></div><h4>Plumbing Systems</h4><p data-en="Complete plumbing stations, pumps, tanks, and integrated system support for major engineering projects." data-ar="أنظمة سباكة متكاملة تشمل المحطات والمضخات والخزانات والدعم الفني للمشاريع الكبرى.">Complete plumbing stations, pumps, tanks, and integrated system support for major engineering projects.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-building-circle-check"></i></div><h4>Facility Management</h4><p data-en="Proactive maintenance and responsive support that keep facilities efficient, functional, and safe." data-ar="إدارة مرافق وصيانة استباقية ودعم سريع يحافظ على كفاءة المنشآت وسلامتها.">Proactive maintenance and responsive support that keep facilities efficient, functional, and safe.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h4>Fire Fighting Systems</h4><p data-en="Up-to-date fire fighting systems designed in line with international regulations and project safety requirements." data-ar="أنظمة مكافحة حريق حديثة ومصممة وفق اللوائح الدولية ومتطلبات السلامة للمشروعات.">Up-to-date fire fighting systems designed in line with international regulations and project safety requirements.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-wind"></i></div><h4>Compressed Air Systems</h4><p data-en="Efficient compressed air networks with dependable engineering installation and after-sales support." data-ar="شبكات هواء مضغوط عالية الكفاءة مع تركيب هندسي موثوق وخدمة ما بعد البيع.">Efficient compressed air networks with dependable engineering installation and after-sales support.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-network-wired"></i></div><h4>Low Current Systems</h4><p data-en="Engineering for fire alarms, CCTV, access control, telecom networks, and structured cabling solutions." data-ar="حلول التيار الخفيف مثل الإنذار وكاميرات المراقبة والتحكم في الدخول وشبكات الاتصالات والكابلات الهيكلية.">Engineering for fire alarms, CCTV, access control, telecom networks, and structured cabling solutions.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-gears"></i></div><h4>Mechanical Installation</h4><p data-en="Mechanical engineering solutions aligned with demanding factory and production environments." data-ar="حلول تركيب ميكانيكي تناسب بيئات المصانع وخطوط الإنتاج ذات المتطلبات العالية.">Mechanical engineering solutions aligned with demanding factory and production environments.</p></div>
+        <div class="service_card card"><div class="service_icon"><i class="fa-solid fa-diagram-project"></i></div><h4>Project Management</h4><p data-en="Full project control including scheduling, coordination, quality follow-up, and delivery management." data-ar="إدارة مشاريع متكاملة تشمل الجدولة والتنسيق ومتابعة الجودة وإدارة التسليم.">Full project control including scheduling, coordination, quality follow-up, and delivery management.</p></div>
       </div>
     </div>
   </section>
@@ -1452,45 +1322,16 @@
   <section id="hr_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">HUMAN RESOURCES</p>
-      <h2 class="section_title" data-aos="fade-up">Engineering Human Resources Capacity</h2>
+      <p class="orange_box" data-en="HUMAN RESOURCES" data-ar="الموارد البشرية">HUMAN RESOURCES</p>
+      <h2 class="section_title" data-en="Engineering Human Resources Capacity" data-ar="الطاقة البشرية في Engineering Steps">Engineering Human Resources Capacity</h2>
 
       <div class="hr_grid">
-        <div class="hr_card card" data-aos="fade-up">
-          <div class="hr_number">20</div>
-          <h4>Engineers</h4>
-          <p>Qualified engineering professionals across different disciplines and project environments.</p>
-        </div>
-
-        <div class="hr_card card" data-aos="fade-up" data-aos-delay="60">
-          <div class="hr_number">4</div>
-          <h4>Accountant & Finance</h4>
-          <p>Financial and accounting support for project control, planning, and reporting.</p>
-        </div>
-
-        <div class="hr_card card" data-aos="fade-up" data-aos-delay="120">
-          <div class="hr_number">2</div>
-          <h4>Admin / HR</h4>
-          <p>Administrative organization and human resources support for daily operations.</p>
-        </div>
-
-        <div class="hr_card card" data-aos="fade-up">
-          <div class="hr_number">4</div>
-          <h4>Procurement</h4>
-          <p>Material sourcing, vendor coordination, and procurement follow-up for engineering projects.</p>
-        </div>
-
-        <div class="hr_card card" data-aos="fade-up" data-aos-delay="60">
-          <div class="hr_number">6</div>
-          <h4>Technical Supervisors</h4>
-          <p>Field supervision, quality monitoring, and site coordination across engineering works.</p>
-        </div>
-
-        <div class="hr_card card" data-aos="fade-up" data-aos-delay="120">
-          <div class="hr_number">45</div>
-          <h4>Technicians & Workers</h4>
-          <p>Skilled site teams supporting execution, installation, and delivery across disciplines.</p>
-        </div>
+        <div class="hr_card card"><div class="hr_number">20</div><h4 data-en="Engineers" data-ar="مهندسون">Engineers</h4><p data-en="Qualified engineering professionals across different disciplines and project environments." data-ar="كوادر هندسية مؤهلة في تخصصات مختلفة وبيئات تنفيذ متعددة.">Qualified engineering professionals across different disciplines and project environments.</p></div>
+        <div class="hr_card card"><div class="hr_number">4</div><h4 data-en="Accountant & Finance" data-ar="الحسابات والمالية">Accountant & Finance</h4><p data-en="Financial and accounting support for project control, planning, and reporting." data-ar="دعم مالي ومحاسبي لإدارة المشروعات والتخطيط والتقارير.">Financial and accounting support for project control, planning, and reporting.</p></div>
+        <div class="hr_card card"><div class="hr_number">2</div><h4 data-en="Admin / HR" data-ar="الإدارة والموارد البشرية">Admin / HR</h4><p data-en="Administrative organization and human resources support for daily operations." data-ar="تنظيم إداري ودعم للموارد البشرية في العمليات اليومية.">Administrative organization and human resources support for daily operations.</p></div>
+        <div class="hr_card card"><div class="hr_number">4</div><h4 data-en="Procurement" data-ar="المشتريات">Procurement</h4><p data-en="Material sourcing, vendor coordination, and procurement follow-up for engineering projects." data-ar="توفير المواد والتنسيق مع الموردين ومتابعة المشتريات للمشروعات.">Material sourcing, vendor coordination, and procurement follow-up for engineering projects.</p></div>
+        <div class="hr_card card"><div class="hr_number">6</div><h4 data-en="Technical Supervisors" data-ar="مشرفون فنيون">Technical Supervisors</h4><p data-en="Field supervision, quality monitoring, and site coordination across engineering works." data-ar="إشراف ميداني ومتابعة جودة وتنسيق أعمال الموقع في مختلف المشاريع الهندسية.">Field supervision, quality monitoring, and site coordination across engineering works.</p></div>
+        <div class="hr_card card"><div class="hr_number">45</div><h4 data-en="Technicians & Workers" data-ar="فنيون وعمال">Technicians & Workers</h4><p data-en="Skilled site teams supporting execution, installation, and delivery across disciplines." data-ar="فرق فنية ماهرة تدعم التنفيذ والتركيب والتسليم في مختلف الأعمال.">Skilled site teams supporting execution, installation, and delivery across disciplines.</p></div>
       </div>
     </div>
   </section>
@@ -1500,12 +1341,13 @@
   <section id="contact_sec" class="section-block">
     <div class="container">
       <div class="section-anim-line" data-aos="fade-right"></div>
-      <p class="orange_box" data-aos="zoom-in">CONTACT</p>
+      <p class="orange_box" data-en="CONTACT" data-ar="تواصل معنا">CONTACT</p>
 
       <div class="contact_grid">
-        <div class="contact_form_wrap card" data-aos="fade-up" data-aos-duration="900">
-          <h3>Let’s Start Working</h3>
-          <p>
+        <div class="contact_form_wrap card">
+          <h3 data-en="Let’s Start Working" data-ar="لنبدأ العمل">Let’s Start Working</h3>
+          <p data-en="Fill in your details and click send. The form will open your email app and prepare the message directly to Engineering Steps."
+             data-ar="أدخل بياناتك واضغط إرسال، وسيتم فتح تطبيق البريد الإلكتروني لإرسال الرسالة مباشرة إلى Engineering Steps.">
             Fill in your details and click send. The form will open your email app and prepare the message directly to Engineering Steps.
           </p>
 
@@ -1524,27 +1366,27 @@
                 <textarea id="message" class="form_control" placeholder="Your Message" required></textarea>
               </div>
               <div class="form_group full">
-                <button type="submit" class="submit_btn">Send Message</button>
+                <button type="submit" class="submit_btn" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
               </div>
             </div>
           </form>
         </div>
 
-        <div class="contact_info_wrap" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+        <div class="contact_info_wrap">
           <div class="contact_info_box card">
-            <h4>Let’s Talk</h4>
-            <p class="lets-talk-line"><strong>Phone:</strong> <a href="tel:+201050003626">+201050003626</a></p>
-            <p class="lets-talk-line"><strong>Email:</strong> <a href="mailto:steps@eng-steps.com">steps@eng-steps.com</a></p>
+            <h4 data-en="Let’s Talk" data-ar="لنتحدث">Let’s Talk</h4>
+            <p class="lets-talk-line"><strong data-en="Phone:" data-ar="الهاتف:">Phone:</strong> <a href="tel:+201050003626">+201050003626</a></p>
+            <p class="lets-talk-line"><strong data-en="Email:" data-ar="البريد الإلكتروني:">Email:</strong> <a href="mailto:steps@eng-steps.com">steps@eng-steps.com</a></p>
           </div>
 
           <div class="contact_info_box card">
-            <h4>Visiting Here</h4>
-            <p>Al-Basateen District – Riyadh</p>
+            <h4 data-en="Visiting Here" data-ar="العنوان">Visiting Here</h4>
+            <p data-en="Al-Basateen District – Riyadh" data-ar="حي البساتين – الرياض">Al-Basateen District – Riyadh</p>
           </div>
 
           <div class="contact_info_box card">
-            <h4>Timing</h4>
-            <p>Sun - Thu: 9 am to 6 pm</p>
+            <h4 data-en="Timing" data-ar="أوقات العمل">Timing</h4>
+            <p data-en="Sun - Thu: 9 am to 6 pm" data-ar="الأحد - الخميس: 9 صباحًا إلى 6 مساءً">Sun - Thu: 9 am to 6 pm</p>
           </div>
         </div>
       </div>
@@ -1559,7 +1401,7 @@
 
       <div class="footer_social">
         <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://x.com/" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://x.com/engsteps" target="_blank" aria-label="X"><i class="fa-brands fa-twitter"></i></a>
         <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
         <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -1579,49 +1421,35 @@
       });
     }
 
-    // heading highlight
-    (function () {
-      const selector = 'h1, h2, h3, h4, .section_title';
-      document.addEventListener('click', function (e) {
-        const h = e.target.closest(selector);
-        if (!h) return;
-        document.querySelectorAll('.heading-selected').forEach(el => el.classList.remove('heading-selected'));
-        h.classList.add('heading-selected');
-      });
-    })();
-
-    // projects active
-    (function () {
-      const cards = document.querySelectorAll('.project_card');
-      cards.forEach(card => {
-        card.addEventListener('click', function () {
-          cards.forEach(c => c.classList.remove('active-project'));
-          this.classList.add('active-project');
-        });
-      });
-    })();
-
     // mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', function () {
-      mobileMenu.classList.toggle('open');
-      const icon = menuToggle.querySelector('i');
-      if (mobileMenu.classList.contains('open')) {
-        icon.className = 'fa-solid fa-xmark';
-      } else {
-        icon.className = 'fa-solid fa-bars';
-      }
-    });
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function () {
+        mobileMenu.classList.toggle('open');
+        const icon = menuToggle.querySelector('i');
+        icon.className = mobileMenu.classList.contains('open')
+          ? 'fa-solid fa-xmark'
+          : 'fa-solid fa-bars';
+      });
 
-    document.querySelectorAll('.mobile_nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+      document.querySelectorAll('.mobile_nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+        });
+      });
+    }
+
+    // projects active
+    document.querySelectorAll('.project_card').forEach(card => {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.project_card').forEach(c => c.classList.remove('active-project'));
+        this.classList.add('active-project');
       });
     });
 
-    // contact form -> mailto
+    // contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', function (e) {
@@ -1637,12 +1465,10 @@
           "Email: " + encodeURIComponent(email) + "%0D%0A%0D%0A" +
           "Message:%0D%0A" + encodeURIComponent(message);
 
-        const mailtoLink =
+        window.location.href =
           "mailto:steps@eng-steps.com?subject=" +
           encodeURIComponent(subject) +
           "&body=" + body;
-
-        window.location.href = mailtoLink;
       });
     }
 
@@ -1677,24 +1503,68 @@
     const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
-    const savedTheme = localStorage.getItem('engineering-steps-theme');
 
     function setTheme(theme) {
       html.setAttribute('data-theme', theme);
       localStorage.setItem('engineering-steps-theme', theme);
-      themeIcon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      if (themeIcon) {
+        themeIcon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      }
     }
 
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme('dark');
+    const savedTheme = localStorage.getItem('engineering-steps-theme');
+    setTheme(savedTheme || 'dark');
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        const current = html.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
     }
 
-    themeToggle.addEventListener('click', function () {
-      const current = html.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
+    // language toggle
+    const langToggle = document.getElementById('langToggle');
+
+    function setLanguage(lang) {
+      document.body.classList.toggle('lang-ar', lang === 'ar');
+      document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('engineering-steps-lang', lang);
+
+      document.querySelectorAll('[data-en][data-ar]').forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+        } else if (el.querySelector && el.querySelector('.bold_txt')) {
+          el.innerHTML = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+        } else {
+          el.textContent = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+        }
+      });
+
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const subjectInput = document.getElementById('subject');
+      const messageInput = document.getElementById('message');
+
+      if (nameInput) nameInput.placeholder = lang === 'ar' ? 'الاسم' : 'Your Name';
+      if (emailInput) emailInput.placeholder = lang === 'ar' ? 'البريد الإلكتروني' : 'Your Email';
+      if (subjectInput) subjectInput.placeholder = lang === 'ar' ? 'الموضوع' : 'Subject';
+      if (messageInput) messageInput.placeholder = lang === 'ar' ? 'رسالتك' : 'Your Message';
+
+      if (langToggle) {
+        langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+      }
+    }
+
+    const savedLang = localStorage.getItem('engineering-steps-lang') || 'en';
+    setLanguage(savedLang);
+
+    if (langToggle) {
+      langToggle.addEventListener('click', function () {
+        const current = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+        setLanguage(current === 'ar' ? 'en' : 'ar');
+      });
+    }
   </script>
 </body>
 </html>
